@@ -1,0 +1,205 @@
+% ITC2007 Course Timetabling Expert System — Proposal (LaTeX)
+% Compile (recommended):
+%   pdflatex proposal.tex
+%   bibtex proposal
+%   pdflatex proposal.tex
+%   pdflatex proposal.tex
+
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue
+}
+
+\title{A Rule-Based Prolog Expert System for Course Timetabling}
+\author{\textit{Qiang Xue - 40300671, Aamna Fawad - 40329487, Avneet Kaur - 40326551} \\\\
+Course: \textit{COMP 6591} \quad\quad Date: \textit{15 February 2026}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Course timetabling is a combinatorial optimization problem with hard feasibility constraints (e.g., no conflicts) and soft quality constraints (e.g., compact curricula, minimum working days)~\cite{bettinelli2015overview}. This project proposes a rule-based expert system implemented in SWI-Prolog to solve the ITC2007 Track~2 Curriculum-Based Course Timetabling benchmark~\cite{itc2007}. We will model the domain as a knowledge base of declarative constraints and build an inference/solving engine that constructs feasible timetables using a construction heuristic with backtracking and randomized restarts. The system will be evaluated on multiple ITC2007 instances using feasibility rate, penalty score, and runtime.
+\end{abstract}
+
+\section{Problem Statement}
+We aim to build an expert system that generates weekly course timetables from ITC2007 Track~2 (Curriculum-Based Course Timetabling) instances~\cite{itc2007,de2022algorithm}. Each instance defines:
+\begin{itemize}[nosep]
+  \item a set of courses (teacher, number of lectures, minimum working days, number of students),
+  \item a set of rooms (capacity),
+  \item curricula (groups of courses that share students),
+  \item and unavailability constraints (course cannot be scheduled in a specific time slot).
+\end{itemize}
+The goal is to assign every lecture to a \textit{day}, \textit{period}, and \textit{room} satisfying all hard constraints and minimizing a soft-constraint penalty.
+
+\section{Objectives and Success Criteria}
+\subsection{Objectives}
+\begin{enumerate}[nosep]
+  \item Parse ITC2007 \texttt{.ctt} data files and build an internal model.
+  \item Encode hard constraints as Prolog rules and validate feasibility.
+  \item Encode soft constraints and compute the objective (penalty).
+  \item Implement a solver that produces feasible solutions.
+  \item Provide reproducible experiments (scripts + CSV summaries) and write-up.
+\end{enumerate}
+
+\subsection{Success Criteria}
+\begin{itemize}[nosep]
+  \item \textbf{Correctness:} solutions pass a hard-constraint validator.
+  \item \textbf{Coverage:} run on all provided instances (e.g., 21 competition instances).
+  \item \textbf{Quality:} penalty is reported and shows improvement over a simple baseline (when feasible).
+  \item \textbf{Reproducibility:} results re-generated with a single command producing a summary CSV.
+\end{itemize}
+
+\section{Dataset}
+Instances are obtained from the official ITC2007 website:
+\begin{center}
+\url{https://www.eeecs.qub.ac.uk/itc2007/Login/SecretPage.php}
+\end{center}
+
+\section{Constraints (Domain Knowledge Base)}
+\subsection{Hard Constraints}
+Hard constraints must always hold:
+\begin{itemize}[nosep]
+  \item \textbf{Lecture completeness:} all required lectures for each course are scheduled.
+  \item \textbf{Room conflict:} at most one lecture per room per time slot.
+  \item \textbf{Teacher conflict:} a teacher teaches at most one lecture per time slot.
+  \item \textbf{Curriculum conflict:} courses in the same curriculum do not overlap.
+  \item \textbf{Unavailability:} forbidden (course, day, period) slots are never used.
+\end{itemize}
+
+\subsection{Soft Constraints (Penalty)}
+Soft constraints define solution quality (lower is better). We will implement the Track~2 penalties:
+\begin{itemize}[nosep]
+  \item \textbf{Room capacity:} penalty when students exceed room capacity.
+  \item \textbf{Minimum working days:} penalty when a course is spread across fewer than required days.
+  \item \textbf{Curriculum compactness:} penalty for isolated lectures in a curriculum.
+  \item \textbf{Room stability:} penalty when a course uses multiple rooms.
+\end{itemize}
+
+\section{Methodology and System Design}
+\subsection{Expert-System Architecture}
+We separate \textit{knowledge} (constraints) from \textit{inference} (solving)~\cite{guyette1994rule}:
+\begin{itemize}[nosep]
+  \item \textbf{Parser/Model:} reads \texttt{.ctt} into structured facts.
+  \item \textbf{Rule base:} Prolog predicates representing constraints.
+  \item \textbf{Solver engine:} constructs a schedule using guided search.
+  \item \textbf{Validator/Scorer:} checks hard constraints and computes penalty.
+  \item \textbf{Output:} writes \texttt{.sol} and CSV summaries.
+\end{itemize}
+
+\subsection{Solving Strategy (Construction-Only)}
+Given the Phase~1 time constraints, we will focus on a construction-only solver that aims to reliably produce feasible timetables and report their penalties.
+\begin{enumerate}[nosep]
+  \item \textbf{Lecture ordering:} schedule the most constrained lectures first (e.g., high degree in conflicts, many unavailable slots).
+  \item \textbf{Feasible placement:} choose a (day, period, room) assignment that satisfies all hard constraints, preferring placements that reduce immediate soft penalties (e.g., adequate room capacity).
+  \item \textbf{Backtracking + randomized restarts:} if the solver gets stuck, it backtracks and/or restarts with different tie-breaking choices to improve feasibility rates.
+\end{enumerate}
+We will incorporate per-instance time limits and record runtime.
+
+\section{Evaluation Plan}
+\subsection{Metrics}
+\begin{itemize}[nosep]
+  \item Feasibility rate (\% of instances producing valid schedules).
+  \item Total penalty (objective value) on feasible instances.
+  \item Runtime per instance (seconds).
+\end{itemize}
+
+\subsection{Experimental Procedure}
+\begin{itemize}[nosep]
+  \item Run a simple baseline (e.g., first-fit greedy without restarts) to establish a reference.
+  \item Run the construction solver (ordering + penalty-aware placement + restarts) under identical time limits.
+  \item Aggregate results into a CSV summary and include tables in the final report.
+\end{itemize}
+
+\section{Timeline}
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Week} & \textbf{Milestones} \\
+\midrule
+1 & Parse \texttt{.ctt}; instance validator; mini end-to-end run \\
+2 & Implement hard constraints; solution validator; CI tests \\
+3 & Implement soft constraints; penalty computation; baseline benchmarks \\
+4 & Construction solver refinements; full benchmark runs; result tables \\
+5 & Write report/paper; prepare presentation and demo \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Work Breakdown Structure (WBS) and Contributions}
+Table~\ref{tab:wbs} summarizes the planned work packages and expected contributions. Tasks may be adjusted as implementation findings emerge, but ownership ensures accountability and parallel progress.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}p{0.10\linewidth}p{0.46\linewidth}p{0.20\linewidth}p{0.18\linewidth}@{}}
+\toprule
+\textbf{WBS} & \textbf{Work Package} & \textbf{Owner(s)} & \textbf{Outputs} \\
+\midrule
+1.0 & Project setup, repo structure, CI, coding conventions & Qiang, Aamna & Working repo + CI \\
+1.1 & ITC2007 Track~2 parser + instance model + sanity checks & Qiang & Parser + unit tests \\
+2.0 & Hard-constraint rule base (teacher/room/curriculum/unavailability/completeness) & Aamna & Validator + tests \\
+2.1 & Soft-constraint scoring (capacity, min working days, compactness, stability) & Avneet & Penalty module + tests \\
+3.0 & Construction heuristic (greedy + restarts) + feasibility diagnostics & Qiang & Baseline solver \\
+3.1 & Penalty-aware construction (ordering + room/day heuristics) & Avneet, Aamna & Construction solver (quality-focused) \\
+4.0 & Benchmarking harness (batch runs, CSV summary, reproducibility) & Qiang & summary.csv \\
+5.0 & Proposal + report + paper drafts (writing + figures/tables) & All & LaTex Documents  \\
+6.0 & Presentation slides + demo script + rehearsal & All & Slides + demo \\
+\bottomrule
+\end{tabular}
+\caption{Work Breakdown Structure and contribution plan.}
+\label{tab:wbs}
+\end{table}
+
+% \section{Phase 1 Evaluation-Criteria Alignment}
+% This proposal is structured to match the Phase~1 evaluation criteria:
+% \begin{itemize}[nosep]
+%   \item \textbf{Problem Definition (15\%):} Sections \textit{Problem Statement} and \textit{Constraints} define the ITC2007 Track~2 inputs, outputs, and constraints.
+%   \item \textbf{Outcome Definition (15\%):} Section \textit{Objectives and Success Criteria} specifies measurable outcomes (validator pass, feasibility rate, penalty, runtime, reproducibility).
+%   \item \textbf{Clarity (20\%):} Sections \textit{Methodology and System Design} and \textit{Evaluation Plan} describe components, data flow, and metrics.
+%   \item \textbf{Completeness (20\%):} The proposal covers dataset, constraints, method, evaluation, timeline, and deliverables end-to-end.
+%   \item \textbf{Conformance (15\%):} Uses the official ITC2007 Track~2 format, produces \texttt{.sol} outputs, and uses a validator/scorer consistent with the benchmark.
+%   \item \textbf{Credibility and Quality of Literature (15\%):} Related Work grounds the approach in ITC2007 and established timetabling literature~\cite{itc2007,bettinelli2015overview,qu2009survey}.
+% \end{itemize}
+
+% \section{Risks and Mitigations}
+% \begin{center}
+% \begin{tabular}{@{}p{0.33\linewidth}p{0.6\linewidth}@{}}
+% \toprule
+% \textbf{Risk} & \textbf{Mitigation} \\
+% \midrule
+% Parser mismatches dataset format & Strict parsing using header counts; unit tests on real instances \\
+% Feasibility hard to reach on some instances & Random restarts; better task ordering; add repair moves \\
+% Optimization stuck in local minima & Randomized restarts; diversify ordering/tie-breaking; time-based stopping \\
+% Runtime too high & Incremental constraint checks; profiling; tune restart/time limits \\
+% \bottomrule
+% \end{tabular}
+% \end{center}
+
+\section{Deliverables}
+\begin{itemize}[nosep]
+  \item Source code (Prolog), tests, and scripts for reproducible runs.
+  % \item Benchmark CSV summaries and selected solution files.
+  \item Proposal (this document), final report, short research paper, and presentation slides.
+\end{itemize}
+
+\section{Related Work (Starter)}
+Curriculum-based course timetabling has been extensively studied in the literature~\cite{bettinelli2015overview}. The ITC2007 competition~\cite{itc2007} established standardized benchmarks and evaluation frameworks for this problem. Various approaches have been explored, including constructive heuristics and broader metaheuristic strategies~\cite{qu2009survey}. Recent work has focused on algorithm selection and instance space analysis to understand problem difficulty~\cite{de2022algorithm}. Rule-based expert system approaches have also been applied to university scheduling problems~\cite{guyette1994rule}, which motivates our Prolog-based approach.
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}

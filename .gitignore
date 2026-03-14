@@ -1,0 +1,32 @@
+# Prolog
+*.qlf
+*.tmp
+
+# OS/editor
+.DS_Store
+.vscode/
+
+# Data (keep raw instances out of git unless allowed)
+data/itc2007/
+
+# Results
+results/**/*.sol
+results/**/*.csv
+results/**/*.json
+
+# LaTeX
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+
+# Slides exports
+# *.pdf
+*.pptx
+*.key
