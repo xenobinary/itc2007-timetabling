@@ -6,8 +6,8 @@
 .DS_Store
 .vscode/
 
-# Data (keep raw instances out of git unless allowed)
-data/itc2007/
+# # Data (keep raw instances out of git unless allowed)
+# data/itc2007/
 
 # Results
 results/**/*.sol

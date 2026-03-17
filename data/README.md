@@ -24,4 +24,4 @@ https://www.eeecs.qub.ac.uk/itc2007/Login/SecretPage.php
 - Output solution path passed via `--out`.
 
 ## Tip
-If you have multiple instances, you can benchmark them with `scripts/benchmark.sh` (created in this repo).
+If you have multiple instances, run them manually or with your own batch command.

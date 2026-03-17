@@ -1,17 +1,17 @@
 # Test Results
 
-Record your test runs and benchmark outputs here.
+Record your test runs and solver outputs here.
 
 ## Unit tests
 - Date:
 - Command: `make test`
 - Result:
 
-## Benchmark runs
+## Solver runs
 - Date:
-- Command: `scripts/benchmark.sh data/itc2007 results/bench`
+- Command:
 - Instances:
 - Notes:
 
 ## Summary table
-Attach or link to `results/bench/summary.csv`.
+Attach or link to any generated summary file.
