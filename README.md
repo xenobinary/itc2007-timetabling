@@ -74,6 +74,3 @@ See data/README.md for the recommended folder layout and notes about not committ
 - M3: Add soft constraints + objective (penalty).
 - M4: Improve the constructive search strategy and compare solver runs.
 - M5: Write-up + presentation.
-
-## Notes
-- Do **not** commit the ITC2007 dataset if licensing forbids redistribution. Keep instances local and document how to obtain them.
