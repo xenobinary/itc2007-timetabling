@@ -5,13 +5,14 @@ Days: 2
 Periods_per_day: 2
 Curricula: 1
 Constraints: 1
-
+COURSES:
 C1 T1 1 1 10
 C2 T2 1 1 10
-
+ROOMS:
 R1 20
 R2 20
-
+CURRICULA:
 CURR1 2 C1 C2
-
+UNAVAILABILITY_CONSTRAINTS:
 C1 0 0
+END.

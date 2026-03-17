@@ -11,10 +11,6 @@ run:
 test:
 	swipl -q -g "[tests/test_runner]" -t halt
 
-validate:
-	@# Usage: make validate INSTANCE=... SOL=...
-	swipl -q -g "[src/validate], main(['--instance','$(INSTANCE)','--solution','$(SOL)'])" -t halt
-
 lint:
 	@echo "No linter configured (optional)."
 

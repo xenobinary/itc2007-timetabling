@@ -15,10 +15,6 @@ Rule-based expert system for **Course Timetabling** using **ITC2007** (Track 2: 
 3. Run a solve (example):
    - `swipl -q -g "[src/main], main(['--instance','data/itc2007/comp01.ctt','--out','results/comp01.sol'])" -t halt`
 
-## Validate a solution
-- Shell script: `scripts/validate_solution.sh data/itc2007/comp01.ctt results/comp01.sol`
-- Makefile: `make validate INSTANCE=data/itc2007/comp01.ctt SOL=results/comp01.sol`
-
 ## Dataset source
 The ITC2007 instances were obtained from the official ITC2007 site:
 https://www.eeecs.qub.ac.uk/itc2007/Login/SecretPage.php
@@ -62,18 +58,18 @@ See data/README.md for the recommended folder layout and notes about not committ
 - `src/` Prolog source code
   - `src/itc2007/` parsers + instance model
   - `src/rules/` hard/soft constraints as rules
-  - `src/solver/` search/optimization engine
-  - `src/output/` solution writer + validators
+  - `src/solver/` constructive search engine
+  - `src/output/` solution writer
 - `tests/` Prolog tests (plunit)
 - `docs/` proposal/report/paper/presentation templates
 - `results/` run outputs and summary tables
 - `scripts/` convenience scripts (run, benchmark)
 
 ## Milestones (suggested)
-- M1: Parse ITC2007 `.ctt` + validate model.
+- M1: Parse ITC2007 `.ctt` + build the instance model.
 - M2: Implement hard constraints + feasibility checker.
 - M3: Add soft constraints + objective (penalty).
-- M4: Search strategy (greedy + local search / simulated annealing / tabu).
+- M4: Improve the constructive search strategy and benchmark it.
 - M5: Benchmark + write-up + presentation.
 
 ## Notes

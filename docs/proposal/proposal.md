@@ -13,7 +13,7 @@ Build a rule-based expert system in Prolog to generate course timetables using I
 
 ## 3. Approach (high-level)
 - Knowledge base: encode constraints as Prolog rules.
-- Inference/solver: construct timetable using greedy heuristics + improvement via local search.
+- Inference/solver: construct timetable using greedy heuristics with backtracking and validation.
 - Validation: check hard constraints; compute penalty.
 
 ## 4. Deliverables
@@ -21,7 +21,7 @@ Build a rule-based expert system in Prolog to generate course timetables using I
 
 ## 5. Timeline
 - Week 1: parser + model
-- Week 2: hard constraints + validator
+- Week 2: hard constraints + feasibility checks
 - Week 3: soft constraints + objective
 - Week 4: search + benchmarks
 - Week 5: write-up + slides

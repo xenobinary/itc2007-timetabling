@@ -23,11 +23,6 @@ swipl -q -g "[tests/test_parser], run_tests([parser])" -t halt
 swipl -q -g "[tests/test_parser], test(read_mini_instance_has_name_and_counts)" -t halt
 ```
 
-### Validate a Solution
-```bash
-make validate INSTANCE=data/itc2007/comp01.ctt SOL=results/comp01.sol
-```
-
 ### Command-Line Options
 | Flag | Description | Required |
 |------|-------------|----------|
@@ -115,11 +110,11 @@ test(test_name) :-
 ## Project Structure
 ```
 src/
-├── main.pl, validate.pl
+├── main.pl
 ├── itc2007/   (model.pl, parser.pl)
 ├── rules/     (hard_constraints.pl, soft_constraints.pl)
-├── solver/    (solver.pl, constructive.pl, local_search.pl)
-├── output/    (writer.pl, validator.pl)
+├── solver/    (solver.pl, constructive.pl)
+├── output/    (writer.pl)
 └── utils/     (args.pl)
 tests/
 ├── test_runner.pl, test_parser.pl, test_constructive.pl

@@ -1,7 +1,8 @@
 :- initialization(run_tests, main).
 
+:- ensure_loaded('test_parser.pl').
+:- ensure_loaded('test_constructive.pl').
+
 run_tests :-
-    consult(tests/test_parser),
-    consult(tests/test_constructive),
     run_tests([parser, constructive]),
     halt(0).

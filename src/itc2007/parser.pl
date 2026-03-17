@@ -3,7 +3,7 @@
 :- use_module(library(readutil)).
 :- use_module(library(lists)).
 :- use_module(library(apply)).
-:- use_module(src/itc2007/model).
+:- use_module(model).
 
 read_instance(Path, Instance) :-
     setup_call_cleanup(
@@ -15,10 +15,7 @@ read_instance(Path, Instance) :-
     split_string(Atom, "\n", "\r", Lines0),
     filter_blank_lines(Lines0, Lines),
     parse_header(Lines, AfterHeader, I0),
-    (   has_official_sections(AfterHeader)
-    ->  parse_sections_official(AfterHeader, I0, Instance)
-    ;   parse_sections_heuristic(AfterHeader, I0, Instance)
-    ).
+    parse_sections_official(AfterHeader, I0, Instance).
 
 filter_blank_lines([], []).
 filter_blank_lines([L|Ls], Result) :-
@@ -72,15 +69,9 @@ header_to_instance([K=V|Rest], I0, I) :-
     ),
     header_to_instance(Rest, I1, I).
 
-parse_sections(Lines, I0, I) :-
-    parse_sections_heuristic(Lines, I0, I).
-
 % -------------------------
 % Official ITC2007 format
 % -------------------------
-
-has_official_sections(Lines) :-
-    member("COURSES:", Lines).
 
 parse_sections_official(Lines, I0, I) :-
     expect_label("COURSES:", Lines, AfterCoursesLabel),
@@ -139,33 +130,6 @@ take_exact(N, [], _, _) :-
     format(user_error, 'Unexpected EOF while taking ~d lines~n', [N]),
     fail.
 
-% -------------------------
-% Heuristic format (used by tests/fixtures/mini.ctt)
-% -------------------------
-
-parse_sections_heuristic(Lines, I0, I) :-
-    % Heuristic parsing: after header come blocks in fixed order.
-    % We accept partial inputs for early development.
-    parse_courses(Lines, R1, I0, I1),
-    parse_rooms(R1, R2, I1, I2),
-    parse_curricula(R2, R3, I2, I3),
-    parse_unavailability(R3, _R4, I3, I4),
-    reverse_instance_lists(I4, I).
-
-parse_courses(Lines, Rest, I0, I) :-
-    % Courses lines: "<Course> <Teacher> <Lectures> <MinDays> <Students>"
-    take_while(course_line, Lines, CourseLines, Rest0),
-    foldl(parse_course, CourseLines, I0, I1),
-    Rest = Rest0,
-    I = I1.
-
-course_line(L) :-
-    split_string(L, " ", " \t", Parts),
-    length(Parts, 5),
-    \+ memberchk("ROOM", Parts),
-    \+ memberchk("CURR", Parts),
-    \+ memberchk("UNAV", Parts).
-
 parse_course(Line, I0, I) :-
     split_string(Line, " \t", " \t", [C,T,Ls,MDs,Ss]),
     number_string(L, Ls),
@@ -173,36 +137,10 @@ parse_course(Line, I0, I) :-
     number_string(S, Ss),
     model:add_course(I0, course(C,T,L,MD,S), I).
 
-parse_rooms(Lines, Rest, I0, I) :-
-    take_while(room_line, Lines, RoomLines, Rest0),
-    foldl(parse_room, RoomLines, I0, I1),
-    Rest = Rest0,
-    I = I1.
-
-room_line(L) :-
-    split_string(L, " ", " \t", Parts),
-    length(Parts, 2),
-    Parts = [R,_],
-    sub_string(R, 0, 1, _, "R").
-
 parse_room(Line, I0, I) :-
     split_string(Line, " \t", " \t", [R,Cs]),
     number_string(C, Cs),
     model:add_room(I0, room(R,C), I).
-
-parse_curricula(Lines, Rest, I0, I) :-
-    take_while(curriculum_line, Lines, CurrLines, Rest0),
-    foldl(parse_curriculum, CurrLines, I0, I1),
-    Rest = Rest0,
-    I = I1.
-
-curriculum_line(L) :-
-    split_string(L, " ", " \t", Parts),
-    length(Parts, N),
-    N >= 3,
-    Parts = [_CurrId, CountStr|_],
-    catch(number_string(Count, CountStr), _, fail),
-    N =:= Count + 2.
 
 parse_curriculum(Line, I0, I) :-
     split_string(Line, " \t", " \t", [CurrId, CountStr|Courses]),
@@ -210,28 +148,8 @@ parse_curriculum(Line, I0, I) :-
     length(Courses, Count),
     model:add_curriculum(I0, curriculum(CurrId, Courses), I).
 
-parse_unavailability(Lines, Rest, I0, I) :-
-    take_while(unav_line, Lines, UnavLines, Rest0),
-    foldl(parse_unav, UnavLines, I0, I1),
-    Rest = Rest0,
-    I = I1.
-
-unav_line(L) :-
-    split_string(L, " ", " \t", Parts),
-    length(Parts, 3),
-    Parts = [_C, D, P],
-    catch(number_string(_, D), _, fail),
-    catch(number_string(_, P), _, fail).
-
 parse_unav(Line, I0, I) :-
     split_string(Line, " \t", " \t", [C,Ds,Ps]),
     number_string(D, Ds),
     number_string(P, Ps),
     model:add_unavailability(I0, C, D, P, I).
-
-take_while(_, [], [], []).
-take_while(Pred, [X|Xs], [X|Ys], Rest) :-
-    call(Pred, X),
-    !,
-    take_while(Pred, Xs, Ys, Rest).
-take_while(_, Xs, [], Xs).

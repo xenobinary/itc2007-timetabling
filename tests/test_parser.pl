@@ -1,6 +1,6 @@
 :- begin_tests(parser).
 
-:- use_module(src/itc2007/parser).
+:- use_module('../src/itc2007/parser').
 
 test(read_mini_instance_has_name_and_counts) :-
     once(parser:read_instance('tests/fixtures/mini.ctt', I)),

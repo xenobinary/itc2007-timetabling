@@ -1,8 +1,8 @@
 :- module(solver, [solve/4]).
 
-:- use_module(src/solver/constructive).
-:- use_module(src/rules/hard_constraints).
-:- use_module(src/rules/soft_constraints).
+:- use_module(constructive).
+:- use_module('../rules/hard_constraints').
+:- use_module('../rules/soft_constraints').
 
 solve(Instance, _Opts, Solution, Stats) :-
     (   constructive:construct(Instance, Solution0)

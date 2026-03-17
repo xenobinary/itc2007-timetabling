@@ -1,10 +1,9 @@
 :- module(main, [main/1]).
 
-:- use_module(src/utils/args).
-:- use_module(src/itc2007/parser).
-:- use_module(src/solver/solver).
-:- use_module(src/output/writer).
-:- use_module(src/output/validator).
+:- use_module(utils/args).
+:- use_module(itc2007/parser).
+:- use_module(solver/solver).
+:- use_module(output/writer).
 :- use_module(library(random)).
 
 main(Argv) :-
@@ -22,10 +21,6 @@ main(Argv) :-
     parser:read_instance(InstancePath, Instance),
     solver:solve(Instance, Opts, Solution, Stats),
     writer:write_solution(OutPath, Solution),
-    (   validator:check_hard_constraints(Instance, Solution)
-    ->  true
-    ;   format(user_error, 'WARNING: produced solution violates hard constraints~n', [])
-    ),
     (   CsvPath \= ''
     ->  writer:write_csv(CsvPath, Stats)
     ;   true
