@@ -5,7 +5,7 @@ Rule-based expert system for **Course Timetabling** using **ITC2007** (Track 2: 
 ## What you’ll deliver
 - **Code**: Prolog solver + rule base + parsers.
 - **Tests**: unit/integration tests + reproducible runs.
-- **Test results**: recorded benchmark runs for selected instances.
+- **Test results**: recorded solver runs for selected instances.
 - **Proposal / Report / Research paper / Presentation**: in `docs/`.
 
 ## Quick start (SWI‑Prolog)
@@ -13,7 +13,11 @@ Rule-based expert system for **Course Timetabling** using **ITC2007** (Track 2: 
    - Ubuntu/Debian: `sudo apt-get install swi-prolog`
 2. Put ITC2007 Track 2 instances under `data/itc2007/` (see data/README.md).
 3. Run a solve (example):
-   - `swipl -q -g "[src/main], main(['--instance','data/itc2007/comp01.ctt','--out','results/comp01.sol'])" -t halt`
+   - `make run INSTANCE=data/itc2007/comp01.ctt OUT=results/comp01.sol`
+   - `make run-clpfd INSTANCE=data/itc2007/comp01.ctt OUT=results/comp01-clpfd.sol TIMEOUT=120`
+   - `make run-all-constructive INST_DIR=data/itc2007 OUT_DIR=results/constructive-batch TIMEOUT=120`
+   - `make run-all-clpfd INST_DIR=data/itc2007 OUT_DIR=results/clpfd-batch TIMEOUT=120`
+   - `swipl -q -g "['src/main'], main(['--instance','data/itc2007/comp01.ctt','--out','results/comp01.sol','--solver','clpfd'])" -t halt`
 
 ## Dataset source
 The ITC2007 instances were obtained from the official ITC2007 site:
@@ -63,14 +67,13 @@ See data/README.md for the recommended folder layout and notes about not committ
 - `tests/` Prolog tests (plunit)
 - `docs/` proposal/report/paper/presentation templates
 - `results/` run outputs and summary tables
-- `scripts/` convenience scripts (run, benchmark)
 
 ## Milestones (suggested)
 - M1: Parse ITC2007 `.ctt` + build the instance model.
 - M2: Implement hard constraints + feasibility checker.
 - M3: Add soft constraints + objective (penalty).
-- M4: Improve the constructive search strategy and benchmark it.
-- M5: Benchmark + write-up + presentation.
+- M4: Improve the constructive search strategy and compare solver runs.
+- M5: Write-up + presentation.
 
 ## Notes
 - Do **not** commit the ITC2007 dataset if licensing forbids redistribution. Keep instances local and document how to obtain them.

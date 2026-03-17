@@ -37,6 +37,7 @@ flowchart TB
     subgraph Solver
         S[solver.pl]
         C[constructive.pl]
+        CL[clpfd_solver.pl]
         HC[hard_constraints.pl]
         SC[soft_constraints.pl]
     end
@@ -51,9 +52,11 @@ flowchart TB
     M --> W
     P --> MD
     S --> C
+    S --> CL
     S --> HC
     S --> SC
     C --> HC
+    CL --> HC
 ```
 
 ## Modules
@@ -159,6 +162,15 @@ High-level approach:
 4. place lectures while avoiding hard-constraint violations
 5. retry with different orderings if needed
 
+### `src/solver/clpfd_solver.pl`
+
+Builds a timetable by posting hard constraints with `library(clpfd)` and then
+labeling slot and room variables.
+
+```prolog
+construct(+Instance, -Solution)
+```
+
 ### `src/solver/solver.pl`
 
 Coordinates solving and statistics generation.
@@ -167,7 +179,8 @@ Coordinates solving and statistics generation.
 solve(+Instance, +Opts, -Solution, -Stats)
 ```
 
-It currently uses only the constructive solver; there is no local-search phase.
+It supports both the greedy constructive solver and a CLPFD-based solver,
+selected through the `solver` option.
 
 ### `src/output/writer.pl`
 
@@ -257,8 +270,12 @@ Solution excerpt:
 ```bash
 make run
 make run INSTANCE=data/itc2007/comp01.ctt OUT=results/comp01.sol
+make run-clpfd INSTANCE=data/itc2007/comp01.ctt OUT=results/comp01-clpfd.sol TIMEOUT=120
+make run-all-constructive INST_DIR=data/itc2007 OUT_DIR=results/constructive-batch TIMEOUT=120
+make run-all-clpfd INST_DIR=data/itc2007 OUT_DIR=results/clpfd-batch TIMEOUT=120
 make test
 swipl -q -g "['src/main'], main(['--instance','data/itc2007/comp01.ctt','--out','results/comp01.sol','--csv','results/comp01.csv'])" -t halt
+swipl -q -g "['src/main'], main(['--instance','data/itc2007/comp01.ctt','--out','results/comp01.sol','--solver','clpfd'])" -t halt
 ```
 
 ## Project Structure
@@ -276,6 +293,7 @@ project/
 │   ├── solver/
 │   │   ├── solver.pl
 │   │   └── constructive.pl
+│   │   └── clpfd_solver.pl
 │   ├── output/
 │   │   └── writer.pl
 │   └── utils/

@@ -6,9 +6,12 @@ This is a **SWI-Prolog** project implementing an expert system for ITC2007 Cours
 
 ### Run the Solver
 ```bash
-make run                           # Using Makefile (default instance)
-make run INSTANCE=data/itc2007/comp01.ctt OUT=results/comp01.sol  # Custom instance
-swipl -q -g "[src/main], main(['--instance','data/itc2007/comp01.ctt','--out','results/comp01.sol'])" -t halt
+make run                           # Constructive solver
+make run INSTANCE=data/itc2007/comp01.ctt OUT=results/comp01.sol TIMEOUT=120
+make run-clpfd INSTANCE=data/itc2007/comp01.ctt OUT=results/comp01-clpfd.sol TIMEOUT=120
+make run-all-constructive INST_DIR=data/itc2007 OUT_DIR=results/constructive-batch TIMEOUT=120
+make run-all-clpfd INST_DIR=data/itc2007 OUT_DIR=results/clpfd-batch TIMEOUT=120
+swipl -q -g "['src/main'], main(['--instance','data/itc2007/comp01.ctt','--out','results/comp01.sol'])" -t halt
 ```
 
 ### Run Tests
@@ -125,8 +128,3 @@ tests/
 1. Create `src/<subdir>/<module>.pl`
 2. Declare module with `:- module(...).`
 3. Export predicates
-
-### Running Benchmarks
-```bash
-./scripts/benchmark.sh
-```
