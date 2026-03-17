@@ -2,7 +2,7 @@
 
 Rule-based expert system for **Course Timetabling** using **ITC2007** (Track 2: Curriculum-based Course Timetabling).
 
-## What you’ll deliver
+## Contents
 - **Code**: Prolog solver + rule base + parsers.
 - **Tests**: unit/integration tests + reproducible runs.
 - **Test results**: recorded solver runs for selected instances.
