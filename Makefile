@@ -1,4 +1,6 @@
-.PHONY: test run run-constructive run-clpfd run-all-constructive run-all-clpfd
+.PHONY: test test-python run run-constructive run-clpfd run-all-constructive run-all-clpfd run-tui
+
+PYTHON ?= python3
 
 # Default example instance/output
 INSTANCE ?= data/itc2007/comp01.ctt
@@ -57,3 +59,9 @@ run-all-clpfd:
 
 test:
 	swipl -q -g "[tests/test_runner]" -t halt
+
+test-python:
+	$(PYTHON) -m unittest discover -s tests_python
+
+run-tui:
+	$(PYTHON) -m timetable_tui

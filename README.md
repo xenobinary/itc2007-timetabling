@@ -19,6 +19,19 @@ Rule-based expert system for **Course Timetabling** using **ITC2007** (Track 2: 
    - `make run-all-clpfd INST_DIR=data/itc2007 OUT_DIR=results/clpfd-batch TIMEOUT=120`
    - `swipl -q -g "['src/main'], main(['--instance','data/itc2007/comp01.ctt','--out','results/comp01.sol','--solver','clpfd'])" -t halt`
 
+## Python terminal interface
+The repository also includes a Python terminal interface for browsing timetable instances, reviewing constraints, choosing a solver, running the existing SWI-Prolog engine, and inspecting human-readable results.
+
+1. Install the Python dependency:
+   - `python3 -m pip install -r requirements-tui.txt`
+2. Start the terminal interface:
+   - `make run-tui`
+   - or `python3 -m timetable_tui`
+3. Run the Python tests:
+   - `make test-python`
+
+The first version keeps SWI-Prolog as the solving engine and uses the existing `.ctt`, `.sol`, and CSV workflow as its integration boundary.
+
 ## Dataset source
 The ITC2007 instances were obtained from the official ITC2007 site:
 https://www.eeecs.qub.ac.uk/itc2007/Login/SecretPage.php
@@ -64,7 +77,9 @@ See data/README.md for the recommended folder layout and notes about not committ
   - `src/rules/` hard/soft constraints as rules
   - `src/solver/` constructive search engine
   - `src/output/` solution writer
+- `timetable_tui/` Python terminal interface over the existing solver workflow
 - `tests/` Prolog tests (plunit)
+- `tests_python/` Python tests for the terminal interface
 - `docs/` proposal/report/paper/presentation templates
 - `results/` run outputs and summary tables
 

@@ -2,12 +2,19 @@
 *.qlf
 *.tmp
 
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
 # OS/editor
 .DS_Store
 .vscode/
 
 # # Data (keep raw instances out of git unless allowed)
 # data/itc2007/
+*.zip
 
 # Results
 results/**/*.sol
@@ -30,3 +37,9 @@ results/**/*.json
 # *.pdf
 *.pptx
 *.key
+
+# 
+.github/
+openspec/
+results/
+AGENTS.md
