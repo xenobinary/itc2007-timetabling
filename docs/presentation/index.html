@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --accent: #6c5ce7;
@@ -17,8 +20,8 @@
             --success: #00b894;
             --warning: #fdcb6e;
             --danger: #d63031;
-            --surface: rgba(255,255,255,0.06);
-            --surface2: rgba(255,255,255,0.10);
+            --surface: rgba(255, 255, 255, 0.06);
+            --surface2: rgba(255, 255, 255, 0.10);
             --text: #dfe6e9;
             --text-muted: #b2bec3;
         }
@@ -27,16 +30,29 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
-        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+        .reveal h1,
+        .reveal h2,
+        .reveal h3,
+        .reveal h4 {
             font-family: 'Inter', sans-serif;
             font-weight: 700;
             text-transform: none;
             letter-spacing: -0.02em;
         }
 
-        .reveal h1 { font-size: 2.0em; }
-        .reveal h2 { font-size: 1.35em; margin-bottom: 0.3em; }
-        .reveal h3 { font-size: 1.0em; color: var(--accent2); }
+        .reveal h1 {
+            font-size: 2.0em;
+        }
+
+        .reveal h2 {
+            font-size: 1.35em;
+            margin-bottom: 0.3em;
+        }
+
+        .reveal h3 {
+            font-size: 1.0em;
+            color: var(--accent2);
+        }
 
         .reveal .slides section {
             text-align: left;
@@ -47,8 +63,8 @@
             width: 100%;
             font-size: 0.46em;
             border-radius: 10px;
-            box-shadow: 0 6px 24px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             margin: 0.3em 0;
         }
 
@@ -63,18 +79,24 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
-        .reveal p, .reveal li {
+        .reveal p,
+        .reveal li {
             font-size: 0.65em;
             line-height: 1.45;
             color: var(--text);
         }
 
-        .reveal ul { list-style: none; padding-left: 0; }
+        .reveal ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
         .reveal ul li::before {
             content: "▸ ";
             color: var(--accent);
             font-weight: 700;
         }
+
         .reveal ul ul li::before {
             content: "· ";
             color: var(--accent2);
@@ -84,6 +106,7 @@
         .title-slide {
             text-align: center !important;
         }
+
         .title-slide h1 {
             font-size: 2.0em;
             background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -92,12 +115,14 @@
             background-clip: text;
             margin-bottom: 0.1em;
         }
+
         .title-slide .subtitle {
             font-size: 0.8em;
             color: var(--text-muted);
             margin-bottom: 1.2em;
             font-weight: 300;
         }
+
         .title-slide .meta {
             font-size: 0.55em;
             color: var(--text-muted);
@@ -111,9 +136,10 @@
             margin: 1.5em 0;
             flex-wrap: wrap;
         }
+
         .tech-badge {
             background: var(--surface);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             padding: 6px 18px;
             font-size: 0.55em;
@@ -129,26 +155,31 @@
             gap: 10px;
             margin: 0.5em 0;
         }
+
         .card {
             background: var(--surface);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 12px;
             padding: 14px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
+
         .card:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 30px rgba(108, 92, 231, 0.15);
         }
+
         .card .icon {
             font-size: 1.3em;
             margin-bottom: 4px;
         }
+
         .card h4 {
             font-size: 0.62em;
             margin: 0 0 4px 0;
             color: #fff;
         }
+
         .card p {
             font-size: 0.48em !important;
             color: var(--text-muted);
@@ -166,6 +197,7 @@
             overflow: hidden;
             margin: 0.6em 0;
         }
+
         .reveal table thead th {
             background: var(--surface2);
             color: var(--accent2);
@@ -174,11 +206,13 @@
             text-align: left;
             border-bottom: 2px solid rgba(108, 92, 231, 0.3);
         }
+
         .reveal table tbody td {
             padding: 8px 14px;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             color: var(--text);
         }
+
         .reveal table tbody tr:hover {
             background: rgba(108, 92, 231, 0.08);
         }
@@ -186,7 +220,7 @@
         /* ---- Diagrams ---- */
         .diagram-container {
             background: var(--surface);
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 12px;
             padding: 14px;
             margin: 0.3em 0;
@@ -198,6 +232,7 @@
             align-items: center;
             gap: 8px;
         }
+
         .and-tree .root {
             background: linear-gradient(135deg, var(--success), #00cec9);
             color: #fff;
@@ -207,6 +242,7 @@
             font-size: 0.6em;
             box-shadow: 0 4px 20px rgba(0, 184, 148, 0.3);
         }
+
         .and-connector {
             display: flex;
             align-items: center;
@@ -215,18 +251,22 @@
             color: var(--warning);
             font-weight: 600;
         }
-        .and-connector::before, .and-connector::after {
+
+        .and-connector::before,
+        .and-connector::after {
             content: '';
             width: 30px;
             height: 2px;
             background: rgba(253, 203, 110, 0.3);
         }
+
         .and-children {
             display: flex;
             gap: 6px;
             flex-wrap: wrap;
             justify-content: center;
         }
+
         .and-child {
             background: rgba(52, 152, 219, 0.15);
             border: 1px solid rgba(52, 152, 219, 0.3);
@@ -237,16 +277,19 @@
             max-width: 140px;
             transition: transform 0.3s, background 0.3s;
         }
+
         .and-child:hover {
             background: rgba(52, 152, 219, 0.25);
             transform: scale(1.05);
         }
+
         .and-child .label {
             font-size: 0.5em;
             font-weight: 600;
             color: #74b9ff;
             margin-bottom: 2px;
         }
+
         .and-child .desc {
             font-size: 0.4em;
             color: var(--text-muted);
@@ -260,6 +303,7 @@
             align-items: center;
             gap: 6px;
         }
+
         .penalty-root {
             background: linear-gradient(135deg, var(--danger), var(--accent3));
             color: #fff;
@@ -269,6 +313,7 @@
             font-size: 0.6em;
             box-shadow: 0 4px 20px rgba(214, 48, 49, 0.3);
         }
+
         .sum-connector {
             display: flex;
             align-items: center;
@@ -277,12 +322,14 @@
             color: var(--accent3);
             font-weight: 700;
         }
+
         .penalty-children {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
             justify-content: center;
         }
+
         .penalty-child {
             background: rgba(253, 203, 110, 0.1);
             border: 1px solid rgba(253, 203, 110, 0.25);
@@ -293,22 +340,30 @@
             max-width: 155px;
             transition: transform 0.3s;
         }
+
         .penalty-child:hover {
             transform: scale(1.05);
         }
-        .penalty-child .icon { font-size: 1.0em; margin-bottom: 2px; }
+
+        .penalty-child .icon {
+            font-size: 1.0em;
+            margin-bottom: 2px;
+        }
+
         .penalty-child .label {
             font-size: 0.5em;
             font-weight: 600;
             color: var(--warning);
             margin-bottom: 2px;
         }
+
         .penalty-child .weight {
             font-size: 0.45em;
             color: var(--accent3);
             font-weight: 700;
             margin-bottom: 2px;
         }
+
         .penalty-child .desc {
             font-size: 0.38em;
             color: var(--text-muted);
@@ -324,39 +379,45 @@
             justify-content: center;
             margin: 0.6em 0;
         }
+
         .flow-step {
             background: var(--surface);
-            border: 1px solid rgba(108,92,231,0.3);
+            border: 1px solid rgba(108, 92, 231, 0.3);
             border-radius: 8px;
             padding: 6px 12px;
             text-align: center;
             min-width: 90px;
         }
+
         .flow-step .step-num {
             font-size: 0.42em;
             color: var(--accent);
             font-weight: 700;
             margin-bottom: 1px;
         }
+
         .flow-step .step-label {
             font-size: 0.44em;
             font-weight: 600;
             color: #fff;
         }
+
         .flow-step .step-desc {
             font-size: 0.35em;
             color: var(--text-muted);
             margin-top: 2px;
         }
+
         .flow-arrow {
             font-size: 0.8em;
             color: var(--accent);
             padding: 0 4px;
         }
+
         .flow-step.active {
             border-color: var(--accent);
-            background: rgba(108,92,231,0.15);
-            box-shadow: 0 0 20px rgba(108,92,231,0.15);
+            background: rgba(108, 92, 231, 0.15);
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.15);
         }
 
         /* ---- Status badges ---- */
@@ -364,10 +425,12 @@
             color: var(--success);
             font-weight: 600;
         }
+
         .status-fail {
             color: var(--danger);
             font-weight: 600;
         }
+
         .status-timeout {
             color: var(--warning);
             font-weight: 600;
@@ -380,6 +443,7 @@
             gap: 16px;
             align-items: start;
         }
+
         .two-col-narrow {
             display: grid;
             grid-template-columns: 2fr 3fr;
@@ -399,7 +463,7 @@
 
         /* ---- Highlight box ---- */
         .highlight-box {
-            background: linear-gradient(135deg, rgba(108,92,231,0.12), rgba(0,206,201,0.08));
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.12), rgba(0, 206, 201, 0.08));
             border-left: 4px solid var(--accent);
             border-radius: 0 10px 10px 0;
             padding: 10px 14px;
@@ -407,7 +471,10 @@
             font-size: 0.55em;
             color: var(--text);
         }
-        .highlight-box strong { color: var(--accent2); }
+
+        .highlight-box strong {
+            color: var(--accent2);
+        }
 
         /* ---- Architecture nodes ---- */
         .arch-grid {
@@ -416,9 +483,10 @@
             gap: 8px;
             margin: 0.6em 0;
         }
+
         .arch-node {
             background: var(--surface);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 8px;
             padding: 8px;
             text-align: center;
@@ -426,12 +494,35 @@
             font-weight: 500;
             transition: 0.3s;
         }
-        .arch-node:hover { background: var(--surface2); }
-        .arch-node.entry { border-color: var(--accent); color: var(--accent); }
-        .arch-node.input { border-color: var(--accent2); color: var(--accent2); }
-        .arch-node.rules { border-color: var(--warning); color: var(--warning); }
-        .arch-node.solver { border-color: var(--success); color: var(--success); }
-        .arch-node.output { border-color: var(--accent3); color: var(--accent3); }
+
+        .arch-node:hover {
+            background: var(--surface2);
+        }
+
+        .arch-node.entry {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .arch-node.input {
+            border-color: var(--accent2);
+            color: var(--accent2);
+        }
+
+        .arch-node.rules {
+            border-color: var(--warning);
+            color: var(--warning);
+        }
+
+        .arch-node.solver {
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .arch-node.output {
+            border-color: var(--accent3);
+            color: var(--accent3);
+        }
 
         /* ---- Key-value list ---- */
         .kv-list {
@@ -441,12 +532,16 @@
             font-size: 0.6em;
             margin: 0.4em 0;
         }
+
         .kv-list .key {
             color: var(--accent2);
             font-weight: 600;
             text-align: right;
         }
-        .kv-list .val { color: var(--text); }
+
+        .kv-list .val {
+            color: var(--text);
+        }
 
         /* CLP(FD) phases */
         .clpfd-phases {
@@ -455,43 +550,64 @@
             gap: 10px;
             margin: 0.3em 0;
         }
+
         .phase-box {
             background: var(--surface);
             border-radius: 10px;
             padding: 10px;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
+
         .phase-box h4 {
             font-size: 0.52em;
             margin: 0 0 4px 0;
         }
-        .phase-box p, .phase-box li {
+
+        .phase-box p,
+        .phase-box li {
             font-size: 0.42em !important;
         }
-        .phase-box.phase-model { border-top: 3px solid #3498db; }
-        .phase-box.phase-constrain { border-top: 3px solid var(--accent); }
-        .phase-box.phase-search { border-top: 3px solid var(--success); }
+
+        .phase-box.phase-model {
+            border-top: 3px solid #3498db;
+        }
+
+        .phase-box.phase-constrain {
+            border-top: 3px solid var(--accent);
+        }
+
+        .phase-box.phase-search {
+            border-top: 3px solid var(--success);
+        }
 
         /* progress */
         .progress-bar {
             height: 6px;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 3px;
             margin: 6px 0 2px;
             overflow: hidden;
         }
+
         .progress-fill {
             height: 100%;
             border-radius: 3px;
             transition: width 0.6s ease;
         }
-        .progress-fill.high { background: var(--success); }
-        .progress-fill.low { background: var(--warning); }
+
+        .progress-fill.high {
+            background: var(--success);
+        }
+
+        .progress-fill.low {
+            background: var(--warning);
+        }
 
         /* thank you */
         .thankyou {
             text-align: center !important;
         }
+
         .thankyou h1 {
             font-size: 2.8em;
             background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
@@ -512,6 +628,7 @@
             transform: scale(0.8);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .reveal .fragment.grow-in.visible {
             opacity: 1;
             transform: scale(1);
@@ -525,116 +642,169 @@
         }
     </style>
 </head>
+
 <body>
-<div class="reveal">
-<div class="slides">
+    <div class="reveal">
+        <div class="slides">
 
-<!-- ============================================================ -->
-<!-- SLIDE 1: Title -->
-<!-- ============================================================ -->
-<section class="title-slide" data-background-gradient="radial-gradient(ellipse at 20% 80%, rgba(108,92,231,0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(0,206,201,0.10) 0%, transparent 50%)">
-    <h1>Solving University Course Timetabling with Prolog</h1>
-    <p class="subtitle">ITC2007 Track 2 — Curriculum-Based Course Timetabling</p>
-    <div class="tech-badges">
-        <span class="tech-badge">SWI-Prolog</span>
-        <span class="tech-badge">CLP(FD)</span>
-        <span class="tech-badge">Rule-Based Expert System</span>
-        <span class="tech-badge">21 Benchmark Instances</span>
-    </div>
-    <p class="meta">COMP 6591 — Knowledge-Based Systems</p>
-    <p style="font-size:0.5em; color:var(--text-muted); margin-top:0.5em;">Qiang Xue · Aamna Fawad · Avneet Kaur</p>
-    <aside class="notes">
-        Good morning/afternoon everyone. Today we're presenting our final project for Knowledge-Based Systems — a Prolog-based expert system that solves the university course timetabling problem, using benchmark instances from the International Timetabling Competition 2007.
-    </aside>
-</section>
+            <!-- ============================================================ -->
+            <!-- SLIDE 1: Title -->
+            <!-- ============================================================ -->
+            <section class="title-slide"
+                data-background-gradient="radial-gradient(ellipse at 20% 80%, rgba(108,92,231,0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(0,206,201,0.10) 0%, transparent 50%)">
+                <h1>Solving University Course Timetabling with Prolog</h1>
+                <p class="subtitle">ITC2007 Track 2 - Curriculum-Based Course Timetabling</p>
+                <div class="tech-badges">
+                    <span class="tech-badge">SWI-Prolog</span>
+                    <span class="tech-badge">CLP(FD)</span>
+                    <span class="tech-badge">Rule-Based Expert System</span>
+                    <span class="tech-badge">21 Benchmark Instances</span>
+                </div>
+                <p class="meta">COMP 6591 - Knowledge-Based Systems</p>
+                <p style="font-size:0.5em; color:var(--text-muted); margin-top:0.5em;">Qiang Xue · Aamna Fawad · Avneet
+                    Kaur</p>
+                <aside class="notes">
+                    Good morning/afternoon everyone. Today we're presenting our final project for Knowledge-Based
+                    Systems — a Prolog-based expert system that solves the university course timetabling problem, using
+                    benchmark instances from the International Timetabling Competition 2007.
+                </aside>
+            </section>
 
-<!-- ============================================================ -->
-<!-- SLIDE 2: Why Timetabling? -->
-<!-- ============================================================ -->
-<section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
-    <p class="section-label">Motivation</p>
-    <h2>Why Course Timetabling?</h2>
+            <!-- ============================================================ -->
+            <!-- SLIDE 2: Why Timetabling? -->
+            <!-- ============================================================ -->
+            <section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
+                <p class="section-label">Motivation</p>
+                <h2>Why Course Timetabling?</h2>
 
-    <div class="card-grid" style="margin-top: 1em;">
-        <div class="card fragment" data-fragment-index="1">
-            <div class="icon">🎓</div>
-            <h4>Universal Problem</h4>
-            <p>Every university faces this challenge every semester — assigning courses to rooms and time slots</p>
-        </div>
-        <div class="card fragment" data-fragment-index="2">
-            <div class="icon">🧩</div>
-            <h4>NP-Hard</h4>
-            <p>No known polynomial-time algorithm. Combinatorial explosion with courses × rooms × slots</p>
-        </div>
-        <div class="card fragment" data-fragment-index="3">
-            <div class="icon">👥</div>
-            <h4>Multiple Stakeholders</h4>
-            <p>Students need clash-free schedules. Teachers can't be double-booked. Admins need room efficiency</p>
-        </div>
-        <div class="card fragment" data-fragment-index="4">
-            <div class="icon">🤖</div>
-            <h4>Perfect for KBS</h4>
-            <p>Domain rules are well-defined. Constraints map naturally to Prolog's logical reasoning</p>
-        </div>
-    </div>
+                <div class="card-grid" style="margin-top: 1em;">
+                    <div class="card fragment" data-fragment-index="1">
+                        <div class="icon">🎓</div>
+                        <h4>Universal Problem</h4>
+                        <p>Every university faces this challenge every semester - assigning courses to rooms and time
+                            slots</p>
+                    </div>
+                    <div class="card fragment" data-fragment-index="2">
+                        <div class="icon">🧩</div>
+                        <h4>NP-Hard</h4>
+                        <p>No known polynomial-time algorithm. Combinatorial explosion with courses × rooms × slots</p>
+                    </div>
+                    <div class="card fragment" data-fragment-index="3">
+                        <div class="icon">👥</div>
+                        <h4>Multiple Stakeholders</h4>
+                        <p>Students need clash-free schedules. Teachers can't be double-booked. Admins need room
+                            efficiency</p>
+                    </div>
+                    <div class="card fragment" data-fragment-index="4">
+                        <div class="icon">🤖</div>
+                        <h4>Perfect for KBS</h4>
+                        <p>Domain rules are well-defined. Constraints map naturally to Prolog's logical reasoning</p>
+                    </div>
+                </div>
 
-    <aside class="notes">
-        Why timetabling? Every university has to solve this problem every semester — assigning courses to rooms and time slots. It seems simple, but once you have hundreds of courses, multiple rooms of different sizes, and constraints from curricula, teachers, and room availability, it becomes an NP-hard combinatorial optimization problem. That makes it a perfect candidate for a knowledge-based approach.
-    </aside>
-</section>
+                <aside class="notes">
+                    Why timetabling? Every university has to solve this problem every semester — assigning courses to
+                    rooms and time slots. It seems simple, but once you have hundreds of courses, multiple rooms of
+                    different sizes, and constraints from curricula, teachers, and room availability, it becomes an
+                    NP-hard combinatorial optimization problem. That makes it a perfect candidate for a knowledge-based
+                    approach.
+                </aside>
+            </section>
 
-<!-- ============================================================ -->
-<!-- SLIDE 3: ITC2007 Competition -->
-<!-- ============================================================ -->
-<section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
-    <p class="section-label">Benchmark</p>
-    <h2>ITC2007 Competition — Track 2</h2>
+            <!-- ============================================================ -->
+            <!-- SLIDE 3: ITC2007 Competition -->
+            <!-- ============================================================ -->
+            <section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
+                <p class="section-label">Benchmark</p>
+                <h2>ITC2007 Competition - Track 2</h2>
 
-    <div class="two-col">
-        <div>
-            <ul>
-                <li><a href="https://www.cs.qub.ac.uk/itc2007/" target="_blank" style="color:var(--accent2); text-decoration:underline;">International Timetabling Competition 2007</a></li>
-                <li><strong style="color: var(--accent2);">Curriculum-Based</strong> Course Timetabling</li>
-                <li>Standardized <code>.ctt</code> input format</li>
-                <li><strong style="color: var(--accent2);">21 benchmark instances</strong> from real Italian universities</li>
-                <li>Well-studied — enables comparison with published results</li>
-                <li>Winner: Tomáš Müller (UniTime) — metaheuristic approach</li>
-            </ul>
-        </div>
-        <div>
-            <table>
-                <thead>
-                    <tr><th>Instance</th><th>Courses</th><th>Rooms</th><th>Days×Periods</th><th>Curricula</th><th>Constraints</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>comp01</td><td>30</td><td>6</td><td>5 × 6</td><td>14</td><td>53</td></tr>
-                    <tr><td>comp05</td><td>54</td><td>9</td><td>6 × 6</td><td>139</td><td>771</td></tr>
-                    <tr><td>comp07</td><td>131</td><td>20</td><td>5 × 6</td><td>77</td><td>―</td></tr>
-                    <tr><td>comp12</td><td>88</td><td>11</td><td>6 × 6</td><td>150</td><td>218</td></tr>
-                    <tr style="color: var(--text-muted); font-style: italic;">
-                        <td colspan="6" style="text-align:center; font-size:.9em;">… 21 instances total</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+                <div class="two-col">
+                    <div>
+                        <ul>
+                            <li><a href="https://www.cs.qub.ac.uk/itc2007/" target="_blank"
+                                    style="color:var(--accent2); text-decoration:underline;">International Timetabling
+                                    Competition 2007</a></li>
+                            <li><strong style="color: var(--accent2);">Curriculum-Based</strong> Course Timetabling</li>
+                            <li>Standardized <code>.ctt</code> input format</li>
+                            <li><strong style="color: var(--accent2);">21 benchmark instances</strong> from real Italian
+                                universities</li>
+                            <li>Well-studied - enables comparison with published results</li>
+                            <li>Winner: Tomáš Müller (UniTime) - metaheuristic approach</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Instance</th>
+                                    <th>Courses</th>
+                                    <th>Rooms</th>
+                                    <th>Days×Periods</th>
+                                    <th>Curricula</th>
+                                    <th>Constraints</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>comp01</td>
+                                    <td>30</td>
+                                    <td>6</td>
+                                    <td>5 × 6</td>
+                                    <td>14</td>
+                                    <td>53</td>
+                                </tr>
+                                <tr>
+                                    <td>comp05</td>
+                                    <td>54</td>
+                                    <td>9</td>
+                                    <td>6 × 6</td>
+                                    <td>139</td>
+                                    <td>771</td>
+                                </tr>
+                                <tr>
+                                    <td>comp07</td>
+                                    <td>131</td>
+                                    <td>20</td>
+                                    <td>5 × 6</td>
+                                    <td>77</td>
+                                    <td>―</td>
+                                </tr>
+                                <tr>
+                                    <td>comp12</td>
+                                    <td>88</td>
+                                    <td>11</td>
+                                    <td>6 × 6</td>
+                                    <td>150</td>
+                                    <td>218</td>
+                                </tr>
+                                <tr style="color: var(--text-muted); font-style: italic;">
+                                    <td colspan="6" style="text-align:center; font-size:.9em;">… 21 instances total</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-    <aside class="notes">
-        We use the benchmarks from the International Timetabling Competition 2007, Track 2, which focuses on curriculum-based course timetabling. The competition provides 21 standardized instances from real Italian universities, defined in a .ctt file format. The instances range in complexity — from comp01 with 30 courses and 6 rooms, up to larger instances. Using standardized benchmarks lets us verify correctness and compare results.
-    </aside>
-</section>
+                <aside class="notes">
+                    We use the benchmarks from the International Timetabling Competition 2007, Track 2, which focuses on
+                    curriculum-based course timetabling. The competition provides 21 standardized instances from real
+                    Italian universities, defined in a .ctt file format. The instances range in complexity — from comp01
+                    with 30 courses and 6 rooms, up to larger instances. Using standardized benchmarks lets us verify
+                    correctness and compare results.
+                </aside>
+            </section>
 
-<!-- ============================================================ -->
-<!-- SLIDE 4: Problem Formalization — Input -->
-<!-- ============================================================ -->
-<section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
-    <p class="section-label">Data Structures</p>
-    <h2>Problem Formalization</h2>
+            <!-- ============================================================ -->
+            <!-- SLIDE 4: Problem Formalization — Input -->
+            <!-- ============================================================ -->
+            <section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
+                <p class="section-label">Data Structures</p>
+                <h2>Problem Formalization</h2>
 
-    <div class="two-col">
-        <div>
-            <h3 style="font-size: 0.7em;">Input: <code>.ctt</code> File</h3>
-            <pre><code class="language-text" data-trim>
+                <div class="two-col">
+                    <div>
+                        <h3 style="font-size: 0.7em;">Input: <code>.ctt</code> File</h3>
+                        <pre><code class="language-text" data-trim>
 Name: Fis0506-1
 Courses: 30    Rooms: 6
 Days: 5        Periods_per_day: 6
@@ -653,10 +823,10 @@ q000  4 c0001 c0002 c0004 c0005
 UNAVAILABILITY_CONSTRAINTS:
 c0001 4 0        ← CourseId Day Period
             </code></pre>
-        </div>
-        <div>
-            <h3 style="font-size: 0.75em;">Prolog Representation</h3>
-            <pre><code class="language-prolog" data-trim>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 0.75em;">Prolog Representation</h3>
+                        <pre><code class="language-prolog" data-trim>
 % Compound terms for domain entities
 course(CourseId, Teacher, Lectures, MinDays, Students)
 room(RoomId, Capacity)
@@ -675,60 +845,67 @@ instance{
   unavailability: [unavailable("c0001",4,0), ...]
 }
             </code></pre>
-            <div class="highlight-box fragment">
-                <strong>Output:</strong> <code>assignment(Course, LectureIdx, Day, Period, RoomId)</code><br>
-                e.g. <code>assignment("c0001", 0, 2, 3, "B")</code> → course c0001, lecture #0, Day 2, Period 3, Room B
-            </div>
-        </div>
-    </div>
-
-    <aside class="notes">
-        Let me walk through the problem structure. Each instance file defines courses with a teacher, number of lectures, and enrollment count. Rooms have capacities. Curricula group courses that share students — these can't overlap. And there are unavailability constraints — specific time slots where a course cannot be scheduled.
-
-        In our Prolog system, we represent these using compound terms — course/5, room/2, curriculum/2 — and bundle everything into a Prolog dict called Instance. The solution is a list of assignment/5 terms, each mapping a lecture of a course to a day, period, and room.
-    </aside>
-</section>
-
-<!-- ============================================================ -->
-<!-- SLIDE 5: Hard Constraints (AND Diagram) -->
-<!-- ============================================================ -->
-<section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
-    <p class="section-label">Hard Constraints</p>
-    <h2>Feasibility = ALL Must Hold</h2>
-
-    <div class="two-col-narrow">
-        <div>
-            <div class="diagram-container">
-                <div class="and-tree">
-                    <div class="root">✅ feasible(I, S)</div>
-                    <div class="and-connector">AND — all 5 required</div>
-                    <div class="and-children">
-                        <div class="and-child fragment" data-fragment-index="1">
-                            <div class="label">Lecture Coverage</div>
-                            <div class="desc">Every course gets exactly the required # of lectures</div>
-                        </div>
-                        <div class="and-child fragment" data-fragment-index="2">
-                            <div class="label">No Room Conflicts</div>
-                            <div class="desc">≤1 course per (Day, Period, Room)</div>
-                        </div>
-                        <div class="and-child fragment" data-fragment-index="3">
-                            <div class="label">No Teacher Conflicts</div>
-                            <div class="desc">A teacher can't teach two courses at the same time</div>
-                        </div>
-                        <div class="and-child fragment" data-fragment-index="4">
-                            <div class="label">No Curriculum Conflicts</div>
-                            <div class="desc">Courses in the same curriculum can't overlap</div>
-                        </div>
-                        <div class="and-child fragment" data-fragment-index="5">
-                            <div class="label">No Unavailability Violations</div>
-                            <div class="desc">Course not placed in forbidden (Day, Period)</div>
+                        <div class="highlight-box fragment">
+                            <strong>Output:</strong>
+                            <code>assignment(Course, LectureIdx, Day, Period, RoomId)</code><br>
+                            e.g. <code>assignment("c0001", 0, 2, 3, "B")</code> → course c0001, lecture #0, Day 2,
+                            Period 3, Room B
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div>
-            <pre><code class="language-prolog" data-trim>
+
+                <aside class="notes">
+                    Let me walk through the problem structure. Each instance file defines courses with a teacher, number
+                    of lectures, and enrollment count. Rooms have capacities. Curricula group courses that share
+                    students — these can't overlap. And there are unavailability constraints — specific time slots where
+                    a course cannot be scheduled.
+
+                    In our Prolog system, we represent these using compound terms — course/5, room/2, curriculum/2 — and
+                    bundle everything into a Prolog dict called Instance. The solution is a list of assignment/5 terms,
+                    each mapping a lecture of a course to a day, period, and room.
+                </aside>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SLIDE 5: Hard Constraints (AND Diagram) -->
+            <!-- ============================================================ -->
+            <section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
+                <p class="section-label">Hard Constraints</p>
+                <h2>Feasibility = ALL Must Hold</h2>
+
+                <div class="two-col-narrow">
+                    <div>
+                        <div class="diagram-container">
+                            <div class="and-tree">
+                                <div class="root">✅ feasible(I, S)</div>
+                                <div class="and-connector">AND — all 5 required</div>
+                                <div class="and-children">
+                                    <div class="and-child fragment" data-fragment-index="1">
+                                        <div class="label">Lecture Coverage</div>
+                                        <div class="desc">Every course gets exactly the required # of lectures</div>
+                                    </div>
+                                    <div class="and-child fragment" data-fragment-index="2">
+                                        <div class="label">No Room Conflicts</div>
+                                        <div class="desc">≤1 course per (Day, Period, Room)</div>
+                                    </div>
+                                    <div class="and-child fragment" data-fragment-index="3">
+                                        <div class="label">No Teacher Conflicts</div>
+                                        <div class="desc">A teacher can't teach two courses at the same time</div>
+                                    </div>
+                                    <div class="and-child fragment" data-fragment-index="4">
+                                        <div class="label">No Curriculum Conflicts</div>
+                                        <div class="desc">Courses in the same curriculum can't overlap</div>
+                                    </div>
+                                    <div class="and-child fragment" data-fragment-index="5">
+                                        <div class="label">No Unavailability Violations</div>
+                                        <div class="desc">Course not placed in forbidden (Day, Period)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <pre><code class="language-prolog" data-trim>
 feasible(Instance, Solution) :-
     \+ violates(Instance, Solution, _).
 
@@ -746,59 +923,68 @@ violates_room_conflict(Sol, room_conflict(D,P,R)) :-
     member(assignment(C2, _, D, P, R), Sol),
     C1 \= C2.
             </code></pre>
-        </div>
-    </div>
-
-    <aside class="notes">
-        A solution is feasible only if ALL five hard constraints are satisfied — this is an AND relationship, as shown in the diagram.
-
-        Lecture Coverage — every course must get exactly the specified number of lectures. No Room Conflicts — two courses can't share a room at the same time. No Teacher Conflicts — same teacher can't teach two courses in the same slot. No Curriculum Conflicts — courses sharing students can't overlap. No Unavailability — respect forbidden time slots.
-
-        In the code, feasible/2 simply checks that no violation exists. The violates/3 uses disjunction — if any single constraint is broken, the solution is infeasible.
-    </aside>
-</section>
-
-<!-- ============================================================ -->
-<!-- SLIDE 6: Soft Constraints -->
-<!-- ============================================================ -->
-<section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
-    <p class="section-label">Soft Constraints</p>
-    <h2>Penalty Minimization</h2>
-
-    <div class="diagram-container" style="padding: 16px;">
-        <div class="penalty-tree">
-            <div class="penalty-root">Total Penalty = Σ all penalties</div>
-            <div class="sum-connector">+&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;+</div>
-            <div class="penalty-children">
-                <div class="penalty-child fragment">
-                    <div class="icon">🏫</div>
-                    <div class="label">Room Capacity</div>
-                    <div class="weight">Weight: ×1</div>
-                    <div class="desc">students − capacity<br>per over-capacity lecture<br><em>e.g. 130 in 100-seat room → 30</em></div>
+                    </div>
                 </div>
-                <div class="penalty-child fragment">
-                    <div class="icon">📅</div>
-                    <div class="label">Min Working Days</div>
-                    <div class="weight">Weight: ×5</div>
-                    <div class="desc">(minDays − actualDays) × 5<br>per under-spread course<br><em>e.g. needs 4, got 3 → 5 penalty</em></div>
-                </div>
-                <div class="penalty-child fragment">
-                    <div class="icon">🔗</div>
-                    <div class="label">Curriculum Compactness</div>
-                    <div class="weight">Weight: ×2</div>
-                    <div class="desc">+2 per isolated lecture<br>no adjacent curriculum lecture<br><em>encourages grouping</em></div>
-                </div>
-                <div class="penalty-child fragment">
-                    <div class="icon">🚪</div>
-                    <div class="label">Room Stability</div>
-                    <div class="weight">Weight: ×1</div>
-                    <div class="desc">(numRooms − 1)<br>per course using multiple rooms<br><em>e.g. 3 rooms → 2 penalty</em></div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <pre style="margin-top: 0.3em;"><code class="language-prolog" data-trim>
+                <aside class="notes">
+                    A solution is feasible only if ALL five hard constraints are satisfied — this is an AND
+                    relationship, as shown in the diagram.
+
+                    Lecture Coverage — every course must get exactly the specified number of lectures. No Room Conflicts
+                    — two courses can't share a room at the same time. No Teacher Conflicts — same teacher can't teach
+                    two courses in the same slot. No Curriculum Conflicts — courses sharing students can't overlap. No
+                    Unavailability — respect forbidden time slots.
+
+                    In the code, feasible/2 simply checks that no violation exists. The violates/3 uses disjunction — if
+                    any single constraint is broken, the solution is infeasible.
+                </aside>
+            </section>
+
+            <!-- ============================================================ -->
+            <!-- SLIDE 6: Soft Constraints -->
+            <!-- ============================================================ -->
+            <section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
+                <p class="section-label">Soft Constraints</p>
+                <h2>Penalty Minimization</h2>
+
+                <div class="diagram-container" style="padding: 16px;">
+                    <div class="penalty-tree">
+                        <div class="penalty-root">Total Penalty = Σ all penalties</div>
+                        <div class="sum-connector">+&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;+</div>
+                        <div class="penalty-children">
+                            <div class="penalty-child fragment">
+                                <div class="icon">🏫</div>
+                                <div class="label">Room Capacity</div>
+                                <div class="weight">Weight: ×1</div>
+                                <div class="desc">students − capacity<br>per over-capacity lecture<br><em>e.g. 130 in
+                                        100-seat room → 30</em></div>
+                            </div>
+                            <div class="penalty-child fragment">
+                                <div class="icon">📅</div>
+                                <div class="label">Min Working Days</div>
+                                <div class="weight">Weight: ×5</div>
+                                <div class="desc">(minDays − actualDays) × 5<br>per under-spread course<br><em>e.g.
+                                        needs 4, got 3 → 5 penalty</em></div>
+                            </div>
+                            <div class="penalty-child fragment">
+                                <div class="icon">🔗</div>
+                                <div class="label">Curriculum Compactness</div>
+                                <div class="weight">Weight: ×2</div>
+                                <div class="desc">+2 per isolated lecture<br>no adjacent curriculum
+                                    lecture<br><em>encourages grouping</em></div>
+                            </div>
+                            <div class="penalty-child fragment">
+                                <div class="icon">🚪</div>
+                                <div class="label">Room Stability</div>
+                                <div class="weight">Weight: ×1</div>
+                                <div class="desc">(numRooms − 1)<br>per course using multiple rooms<br><em>e.g. 3 rooms
+                                        → 2 penalty</em></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <pre style="margin-top: 0.3em;"><code class="language-prolog" data-trim>
 penalty(Instance, Solution, TotalPenalty) :-
     room_capacity_penalty(Instance, Solution, RoomP),
     min_working_days_penalty(Instance, Solution, DaysP),
@@ -807,52 +993,55 @@ penalty(Instance, Solution, TotalPenalty) :-
     TotalPenalty is RoomP + DaysP + CompactP + StableP.
     </code></pre>
 
-    <aside class="notes">
-        Once a solution is feasible, we want to minimize the penalty. ITC2007 defines four soft constraints, each with a different weight.
+                <aside class="notes">
+                    Once a solution is feasible, we want to minimize the penalty. ITC2007 defines four soft constraints,
+                    each with a different weight.
 
-        Room Capacity — 130 students in a 100-seat room costs 30, weight 1. Minimum Working Days — lectures should be spread across distinct days; missing a day costs 5. Curriculum Compactness — isolated lectures in a curriculum cost 2 each. Room Stability — each extra room used by a course adds 1.
+                    Room Capacity — 130 students in a 100-seat room costs 30, weight 1. Minimum Working Days — lectures
+                    should be spread across distinct days; missing a day costs 5. Curriculum Compactness — isolated
+                    lectures in a curriculum cost 2 each. Room Stability — each extra room used by a course adds 1.
 
-        The total penalty is the sum. Our greedy solver for comp01 achieves about 3,020.
-    </aside>
-</section>
+                    The total penalty is the sum. Our greedy solver for comp01 achieves about 3,020.
+                </aside>
+            </section>
 
-<!-- ============================================================ -->
-<!-- SLIDE 7: Greedy Constructive Solver -->
-<!-- ============================================================ -->
-<section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
-    <p class="section-label">Solver 1</p>
-    <h2>Greedy Constructive Approach</h2>
+            <!-- ============================================================ -->
+            <!-- SLIDE 7: Greedy Constructive Solver -->
+            <!-- ============================================================ -->
+            <section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
+                <p class="section-label">Solver 1</p>
+                <h2>Greedy Constructive Approach</h2>
 
-    <div class="two-col">
-        <div>
-            <div class="flow-steps" style="flex-direction: column; align-items: stretch;">
-                <div class="flow-step fragment" data-fragment-index="1" style="margin-bottom:4px;">
-                    <div class="step-num">Step 1</div>
-                    <div class="step-label">Build Tasks</div>
-                    <div class="step-desc">One task per lecture (6 lectures → 6 tasks)</div>
-                </div>
-                <div style="text-align:center; color:var(--accent); font-size:0.7em;">▼</div>
-                <div class="flow-step fragment" data-fragment-index="2" style="margin-bottom:4px;">
-                    <div class="step-num">Step 2</div>
-                    <div class="step-label">Rank by Difficulty</div>
-                    <div class="step-desc">More constraints → schedule first</div>
-                </div>
-                <div style="text-align:center; color:var(--accent); font-size:0.7em;">▼</div>
-                <div class="flow-step fragment" data-fragment-index="3" style="margin-bottom:4px;">
-                    <div class="step-num">Step 3</div>
-                    <div class="step-label">Greedy Placement</div>
-                    <div class="step-desc">Try (slot × room) until feasible</div>
-                </div>
-                <div style="text-align:center; color:var(--accent); font-size:0.7em;">▼</div>
-                <div class="flow-step fragment" data-fragment-index="4" style="margin-bottom:4px;">
-                    <div class="step-num">Step 4</div>
-                    <div class="step-label">Retry if Stuck</div>
-                    <div class="step-desc">Re-randomize, up to 30 attempts</div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <pre><code class="language-prolog" data-trim data-line-numbers="1-4|6-11|13-17">
+                <div class="two-col">
+                    <div>
+                        <div class="flow-steps" style="flex-direction: column; align-items: stretch;">
+                            <div class="flow-step fragment" data-fragment-index="1" style="margin-bottom:4px;">
+                                <div class="step-num">Step 1</div>
+                                <div class="step-label">Build Tasks</div>
+                                <div class="step-desc">One task per lecture (6 lectures → 6 tasks)</div>
+                            </div>
+                            <div style="text-align:center; color:var(--accent); font-size:0.7em;">▼</div>
+                            <div class="flow-step fragment" data-fragment-index="2" style="margin-bottom:4px;">
+                                <div class="step-num">Step 2</div>
+                                <div class="step-label">Rank by Difficulty</div>
+                                <div class="step-desc">More constraints → schedule first</div>
+                            </div>
+                            <div style="text-align:center; color:var(--accent); font-size:0.7em;">▼</div>
+                            <div class="flow-step fragment" data-fragment-index="3" style="margin-bottom:4px;">
+                                <div class="step-num">Step 3</div>
+                                <div class="step-label">Greedy Placement</div>
+                                <div class="step-desc">Try (slot × room) until feasible</div>
+                            </div>
+                            <div style="text-align:center; color:var(--accent); font-size:0.7em;">▼</div>
+                            <div class="flow-step fragment" data-fragment-index="4" style="margin-bottom:4px;">
+                                <div class="step-num">Step 4</div>
+                                <div class="step-label">Retry if Stuck</div>
+                                <div class="step-desc">Re-randomize, up to 30 attempts</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <pre><code class="language-prolog" data-trim data-line-numbers="1-4|6-11|13-17">
 construct(Instance, Solution) :-
     build_tasks(Instance, CurrMap, Tasks),
     try_attempts(30, Instance, Rooms, Slots,
@@ -871,54 +1060,61 @@ can_place(Course, Day, Period, RoomId, Instance, ...) :-
     \+ memberchk(assignment(_,_,Day,Period,RoomId), Acc),
     %% + teacher & curriculum conflict checks
             </code></pre>
-        </div>
-    </div>
+                    </div>
+                </div>
 
-    <aside class="notes">
-        Our first solver is a greedy constructive approach. First, we create one task per lecture. Then we rank tasks by difficulty — courses with more unavailability constraints or curriculum overlaps are scheduled first, because they have fewer valid slots.
+                <aside class="notes">
+                    Our first solver is a greedy constructive approach. First, we create one task per lecture. Then we
+                    rank tasks by difficulty — courses with more unavailability constraints or curriculum overlaps are
+                    scheduled first, because they have fewer valid slots.
 
-        We generate all possible time slots, randomize them, and for each task try every slot and room until we find one that passes all hard constraints. If we get stuck, we retry with a new random permutation — up to 30 attempts.
+                    We generate all possible time slots, randomize them, and for each task try every slot and room until
+                    we find one that passes all hard constraints. If we get stuck, we retry with a new random
+                    permutation — up to 30 attempts.
 
-        This approach is fast — comp01 solves in under a second — and successfully finds feasible solutions for 20 out of 21 instances. The one failure, comp05, has 771 unavailability constraints.
-    </aside>
-</section>
+                    This approach is fast — comp01 solves in under a second — and successfully finds feasible solutions
+                    for 20 out of 21 instances. The one failure, comp05, has 771 unavailability constraints.
+                </aside>
+            </section>
 
-<!-- ============================================================ -->
-<!-- SLIDE 8: CLP(FD) Solver -->
-<!-- ============================================================ -->
-<section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
-    <p class="section-label">Solver 2</p>
-    <h2>CLP(FD) Constraint Solver</h2>
+            <!-- ============================================================ -->
+            <!-- SLIDE 8: CLP(FD) Solver -->
+            <!-- ============================================================ -->
+            <section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
+                <p class="section-label">Solver 2</p>
+                <h2>CLP(FD) Constraint Solver</h2>
 
-    <div class="clpfd-phases">
-        <div class="phase-box phase-model fragment" data-fragment-index="1">
-            <h4 style="color: #3498db;">Phase 1: Model</h4>
-            <p>One variable per lecture:</p>
-            <ul>
-                <li><code>Slot[i] ∈ 0..NumSlots-1</code></li>
-                <li><code>Room[i] ∈ 1..NumRooms</code></li>
-            </ul>
-            <p style="margin-top:8px; color:var(--text-muted);">Domains encode all possible assignments</p>
-        </div>
-        <div class="phase-box phase-constrain fragment" data-fragment-index="2">
-            <h4 style="color: var(--accent);">Phase 2: Post Constraints</h4>
-            <ul>
-                <li><strong>Unavailability:</strong> <code>Slot[i] #\= Forbidden</code></li>
-                <li><strong>Same course:</strong> <code>Slot[i] #\= Slot[j]</code></li>
-                <li><strong>Same teacher:</strong> <code>Slot[i] #\= Slot[j]</code></li>
-                <li><strong>Same curriculum:</strong> <code>Slot[i] #\= Slot[j]</code></li>
-                <li><strong>Room conflict:</strong><br><code>(Slot[i] #\= Slot[j]) #\/ (Room[i] #\= Room[j])</code></li>
-            </ul>
-        </div>
-        <div class="phase-box phase-search fragment" data-fragment-index="3">
-            <h4 style="color: var(--success);">Phase 3: Search</h4>
-            <p><code>labeling([ffc], Vars)</code></p>
-            <p style="margin-top:4px;"><strong>ffc</strong> = First-Fail, most Constrained</p>
-            <p style="color: var(--text-muted);">Smallest domain first</p>
-        </div>
-    </div>
+                <div class="clpfd-phases">
+                    <div class="phase-box phase-model fragment" data-fragment-index="1">
+                        <h4 style="color: #3498db;">Phase 1: Model</h4>
+                        <p>One variable per lecture:</p>
+                        <ul>
+                            <li><code>Slot[i] ∈ 0..NumSlots-1</code></li>
+                            <li><code>Room[i] ∈ 1..NumRooms</code></li>
+                        </ul>
+                        <p style="margin-top:8px; color:var(--text-muted);">Domains encode all possible assignments</p>
+                    </div>
+                    <div class="phase-box phase-constrain fragment" data-fragment-index="2">
+                        <h4 style="color: var(--accent);">Phase 2: Post Constraints</h4>
+                        <ul>
+                            <li><strong>Unavailability:</strong> <code>Slot[i] #\= Forbidden</code></li>
+                            <li><strong>Same course:</strong> <code>Slot[i] #\= Slot[j]</code></li>
+                            <li><strong>Same teacher:</strong> <code>Slot[i] #\= Slot[j]</code></li>
+                            <li><strong>Same curriculum:</strong> <code>Slot[i] #\= Slot[j]</code></li>
+                            <li><strong>Room
+                                    conflict:</strong><br><code>(Slot[i] #\= Slot[j]) #\/ (Room[i] #\= Room[j])</code>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="phase-box phase-search fragment" data-fragment-index="3">
+                        <h4 style="color: var(--success);">Phase 3: Search</h4>
+                        <p><code>labeling([ffc], Vars)</code></p>
+                        <p style="margin-top:4px;"><strong>ffc</strong> = First-Fail, most Constrained</p>
+                        <p style="color: var(--text-muted);">Smallest domain first</p>
+                    </div>
+                </div>
 
-    <pre><code class="language-prolog" data-trim data-line-numbers="1-5|6-8|9-10">
+                <pre><code class="language-prolog" data-trim data-line-numbers="1-5|6-8|9-10">
 construct(Instance, Solution) :-
     build_lectures(Instance.courses, Lectures),
     length(Lectures, N),
@@ -931,84 +1127,171 @@ construct(Instance, Solution) :-
     build_solution(Lectures, SlotVars, RoomVars, ..., Solution).
     </code></pre>
 
-    <aside class="notes">
-        Our second solver uses CLP(FD) — Constraint Logic Programming over Finite Domains, built into SWI-Prolog. Instead of placing lectures one by one, we create variables — one slot and one room variable per lecture, with finite domains.
+                <aside class="notes">
+                    Our second solver uses CLP(FD) — Constraint Logic Programming over Finite Domains, built into
+                    SWI-Prolog. Instead of placing lectures one by one, we create variables — one slot and one room
+                    variable per lecture, with finite domains.
 
-        Then we post all hard constraints as mathematical constraints. For example, same-teacher courses get Slot[i] not-equal Slot[j]. The room conflict says: either different slots OR different rooms — a reified disjunction.
+                    Then we post all hard constraints as mathematical constraints. For example, same-teacher courses get
+                    Slot[i] not-equal Slot[j]. The room conflict says: either different slots OR different rooms — a
+                    reified disjunction.
 
-        Finally, labeling with the ffc heuristic searches the solution space. CLP(FD) is elegant but computationally heavier — it solves 5 of 21 instances within timeout. But it guarantees all hard constraints by construction.
-    </aside>
-</section>
+                    Finally, labeling with the ffc heuristic searches the solution space. CLP(FD) is elegant but
+                    computationally heavier — it solves 5 of 21 instances within timeout. But it guarantees all hard
+                    constraints by construction.
+                </aside>
+            </section>
 
-<!-- ============================================================ -->
-<!-- SLIDE 9: Results Comparison -->
-<!-- ============================================================ -->
-<section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
-    <p class="section-label">Evaluation</p>
-    <h2>Results Comparison</h2>
+            <!-- ============================================================ -->
+            <!-- SLIDE 9: Results Comparison -->
+            <!-- ============================================================ -->
+            <section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
+                <p class="section-label">Evaluation</p>
+                <h2>Results Comparison</h2>
 
-    <div class="two-col">
-        <div>
-            <table>
-                <thead>
-                    <tr><th>Instance</th><th>Greedy</th><th>Penalty</th><th>CLP(FD)</th><th>Penalty</th><th style="color:var(--warning);">Best Known</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>comp01</td><td class="status-ok">✅</td><td>3,020</td><td class="status-timeout">⏱</td><td>—</td><td style="color:var(--warning);">5</td></tr>
-                    <tr><td>comp02</td><td class="status-ok">✅</td><td>7,483</td><td class="status-timeout">⏱</td><td>—</td><td style="color:var(--warning);">24</td></tr>
-                    <tr><td>comp03</td><td class="status-ok">✅</td><td>5,834</td><td class="status-ok">✅</td><td>7,949</td><td style="color:var(--warning);">66</td></tr>
-                    <tr><td>comp04</td><td class="status-ok">✅</td><td>5,212</td><td class="status-ok">✅</td><td>7,063</td><td style="color:var(--warning);">37</td></tr>
-                    <tr><td>comp05</td><td class="status-fail">❌</td><td>—</td><td class="status-timeout">⏱</td><td>—</td><td style="color:var(--warning);">290</td></tr>
-                    <tr><td>comp09</td><td class="status-ok">✅</td><td>5,013</td><td class="status-ok">✅</td><td>7,401</td><td style="color:var(--warning);">103</td></tr>
-                    <tr><td>comp11</td><td class="status-ok">✅</td><td>1,987</td><td class="status-timeout">⏱</td><td>—</td><td style="color:var(--warning);">0</td></tr>
-                    <tr><td>comp12</td><td class="status-ok">✅</td><td>5,066</td><td class="status-ok">✅</td><td style="color:var(--success);">4,822</td><td style="color:var(--warning);">300</td></tr>
-                </tbody>
-            </table>
-            <p style="font-size:0.4em; color:var(--text-muted); margin-top:4px;">Best Known = state-of-the-art metaheuristic results (simulated annealing, tabu search)</p>
-        </div>
-        <div>
-            <div class="card" style="margin-bottom: 8px; border-left: 3px solid var(--success);">
-                <h4 style="color: var(--success);">Greedy Constructive</h4>
-                <div class="kv-list">
-                    <span class="key">Success:</span><span class="val">20/21 (95%)</span>
-                    <span class="key">Speed:</span><span class="val">< 2 sec / instance</span>
+                <div class="two-col">
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Instance</th>
+                                    <th>Greedy</th>
+                                    <th>Penalty</th>
+                                    <th>CLP(FD)</th>
+                                    <th>Penalty</th>
+                                    <th style="color:var(--warning);">Best Known</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>comp01</td>
+                                    <td class="status-ok">✅</td>
+                                    <td>3,020</td>
+                                    <td class="status-timeout">⏱</td>
+                                    <td>—</td>
+                                    <td style="color:var(--warning);">5</td>
+                                </tr>
+                                <tr>
+                                    <td>comp02</td>
+                                    <td class="status-ok">✅</td>
+                                    <td>7,483</td>
+                                    <td class="status-timeout">⏱</td>
+                                    <td>—</td>
+                                    <td style="color:var(--warning);">24</td>
+                                </tr>
+                                <tr>
+                                    <td>comp03</td>
+                                    <td class="status-ok">✅</td>
+                                    <td>5,834</td>
+                                    <td class="status-ok">✅</td>
+                                    <td>7,949</td>
+                                    <td style="color:var(--warning);">66</td>
+                                </tr>
+                                <tr>
+                                    <td>comp04</td>
+                                    <td class="status-ok">✅</td>
+                                    <td>5,212</td>
+                                    <td class="status-ok">✅</td>
+                                    <td>7,063</td>
+                                    <td style="color:var(--warning);">37</td>
+                                </tr>
+                                <tr>
+                                    <td>comp05</td>
+                                    <td class="status-fail">❌</td>
+                                    <td>—</td>
+                                    <td class="status-timeout">⏱</td>
+                                    <td>—</td>
+                                    <td style="color:var(--warning);">290</td>
+                                </tr>
+                                <tr>
+                                    <td>comp09</td>
+                                    <td class="status-ok">✅</td>
+                                    <td>5,013</td>
+                                    <td class="status-ok">✅</td>
+                                    <td>7,401</td>
+                                    <td style="color:var(--warning);">103</td>
+                                </tr>
+                                <tr>
+                                    <td>comp11</td>
+                                    <td class="status-ok">✅</td>
+                                    <td>1,987</td>
+                                    <td class="status-timeout">⏱</td>
+                                    <td>—</td>
+                                    <td style="color:var(--warning);">0</td>
+                                </tr>
+                                <tr>
+                                    <td>comp12</td>
+                                    <td class="status-ok">✅</td>
+                                    <td>5,066</td>
+                                    <td class="status-ok">✅</td>
+                                    <td style="color:var(--success);">4,822</td>
+                                    <td style="color:var(--warning);">300</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="font-size:0.4em; color:var(--text-muted); margin-top:4px;">Best Known =
+                            state-of-the-art metaheuristic results (simulated annealing, tabu search)</p>
+                    </div>
+                    <div>
+                        <div class="card" style="margin-bottom: 8px; border-left: 3px solid var(--success);">
+                            <h4 style="color: var(--success);">Greedy Constructive</h4>
+                            <div class="kv-list">
+                                <span class="key">Success:</span><span class="val">20/21 (95%)</span>
+                                <span class="key">Speed:</span><span class="val">
+                                    < 2 sec / instance</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill high" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div class="card" style="margin-bottom: 8px; border-left: 3px solid var(--accent);">
+                            <h4 style="color: var(--accent);">CLP(FD)</h4>
+                            <div class="kv-list">
+                                <span class="key">Success:</span><span class="val">5/21 (24%)</span>
+                                <span class="key">Guarantee:</span><span class="val">Hard constraints by
+                                    construction</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill low" style="width: 24%;"></div>
+                            </div>
+                        </div>
+                        <div class="card" style="border-left: 3px solid var(--warning);">
+                            <h4 style="color: var(--warning);">Gap to Best Known</h4>
+                            <p style="font-size:0.48em!important;">Competition winners use hours of simulated annealing
+                                / tabu search. Our greedy solver finds <strong style="color:var(--accent2);">feasible
+                                    solutions in &lt;2s</strong> — penalty optimization is a future improvement.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="progress-bar"><div class="progress-fill high" style="width: 95%;"></div></div>
-            </div>
-            <div class="card" style="margin-bottom: 8px; border-left: 3px solid var(--accent);">
-                <h4 style="color: var(--accent);">CLP(FD)</h4>
-                <div class="kv-list">
-                    <span class="key">Success:</span><span class="val">5/21 (24%)</span>
-                    <span class="key">Guarantee:</span><span class="val">Hard constraints by construction</span>
-                </div>
-                <div class="progress-bar"><div class="progress-fill low" style="width: 24%;"></div></div>
-            </div>
-            <div class="card" style="border-left: 3px solid var(--warning);">
-                <h4 style="color: var(--warning);">Gap to Best Known</h4>
-                <p style="font-size:0.48em!important;">Competition winners use hours of simulated annealing / tabu search. Our greedy solver finds <strong style="color:var(--accent2);">feasible solutions in &lt;2s</strong> — penalty optimization is a future improvement.</p>
-            </div>
-        </div>
-    </div>
 
-    <aside class="notes">
-        Let's compare. The greedy solver produces feasible solutions for 20 of 21 instances — 95% success rate. The only failure is comp05, the most constrained instance.
+                <aside class="notes">
+                    Let's compare. The greedy solver produces feasible solutions for 20 of 21 instances — 95% success
+                    rate. The only failure is comp05, the most constrained instance.
 
-        CLP(FD) completes 5 instances within the 2-minute timeout. On comp12, CLP(FD) achieves a lower penalty — 4,822 vs 5,066.
+                    CLP(FD) completes 5 instances within the 2-minute timeout. On comp12, CLP(FD) achieves a lower
+                    penalty — 4,822 vs 5,066.
 
-        Now look at the 'Best Known' column — these are the results from state-of-the-art metaheuristic solvers using simulated annealing and tabu search, often running for minutes to hours. The competition winner Tomáš Müller used a sophisticated hybrid approach. comp01 best known is 5 versus our 3,020 — a huge gap. But that's expected: our focus was on building a knowledge-based system with clean constraint separation, not on winning an optimization competition. Adding local search would dramatically reduce this gap.
-    </aside>
-</section>
+                    Now look at the 'Best Known' column — these are the results from state-of-the-art metaheuristic
+                    solvers using simulated annealing and tabu search, often running for minutes to hours. The
+                    competition winner Tomáš Müller used a sophisticated hybrid approach. comp01 best known is 5 versus
+                    our 3,020 — a huge gap. But that's expected: our focus was on building a knowledge-based system with
+                    clean constraint separation, not on winning an optimization competition. Adding local search would
+                    dramatically reduce this gap.
+                </aside>
+            </section>
 
-<!-- ============================================================ -->
-<!-- SLIDE 10: Live Demo -->
-<!-- ============================================================ -->
-<section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
-    <p class="section-label">Demonstration</p>
-    <h2>Live Demo</h2>
+            <!-- ============================================================ -->
+            <!-- SLIDE 10: Live Demo -->
+            <!-- ============================================================ -->
+            <section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
+                <p class="section-label">Demonstration</p>
+                <h2>Live Demo</h2>
 
-    <div class="card" style="background: #0d1117; border: 1px solid #30363d; font-family: 'JetBrains Mono', monospace; padding: 24px; margin: 0.6em 0;">
-        <p style="color: #8b949e; font-size: 0.55em; margin: 0 0 12px;">Terminal — solving comp01 with greedy approach</p>
-        <pre style="background: transparent; box-shadow: none; border: none; margin: 0;"><code class="language-bash" data-trim style="background: transparent; font-size: 1.1em;">
+                <div class="card"
+                    style="background: #0d1117; border: 1px solid #30363d; font-family: 'JetBrains Mono', monospace; padding: 24px; margin: 0.6em 0;">
+                    <p style="color: #8b949e; font-size: 0.55em; margin: 0 0 12px;">Terminal — solving comp01 with
+                        greedy approach</p>
+                    <pre style="background: transparent; box-shadow: none; border: none; margin: 0;"><code class="language-bash" data-trim style="background: transparent; font-size: 1.1em;">
 # 1. Show the instance file
 head -8 data/itc2007/comp01.ctt
 
@@ -1027,135 +1310,152 @@ cat results/demo.csv
 # feasible,penalty
 # true,3020
         </code></pre>
-    </div>
-
-    <div class="highlight-box">
-        <strong>Also available:</strong> Python terminal interface — <code>make run-tui</code> — for browsing instances, selecting solvers, and inspecting results interactively.
-    </div>
-
-    <aside class="notes">
-        Let me demo. Here's the comp01 instance — 30 courses, 6 rooms, 5 days. I'll run the greedy solver. [Run the command]. It finishes in about a second. The solution file assigns each course to a room, day, and period. The CSV shows feasible=true, penalty about 3000.
-
-        We also built a Python terminal interface for interactively browsing instances, choosing solvers, and viewing results.
-    </aside>
-</section>
-
-<!-- ============================================================ -->
-<!-- SLIDE 11: Architecture & Lessons -->
-<!-- ============================================================ -->
-<section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
-    <p class="section-label">Architecture</p>
-    <h2>System Design & Lessons Learned</h2>
-
-    <div class="two-col">
-        <div>
-            <div class="diagram-container" style="padding: 16px;">
-                <p style="font-size:0.55em; font-weight:600; color:var(--accent2); margin:0 0 10px;">Module Dependency Graph</p>
-                <div style="display:grid; grid-template-columns:1fr; gap:6px; font-size:0.9em;">
-                    <div class="arch-node entry">📌 main.pl — Entry Point</div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;">
-                        <div class="arch-node input">parser.pl</div>
-                        <div class="arch-node input">model.pl</div>
-                        <div class="arch-node input">args.pl</div>
-                    </div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
-                        <div class="arch-node rules">hard_constraints.pl</div>
-                        <div class="arch-node rules">soft_constraints.pl</div>
-                    </div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;">
-                        <div class="arch-node solver">solver.pl</div>
-                        <div class="arch-node solver">constructive.pl</div>
-                        <div class="arch-node solver">clpfd_solver.pl</div>
-                    </div>
-                    <div class="arch-node output">writer.pl — Output</div>
                 </div>
-            </div>
-        </div>
-        <div>
-            <div class="card" style="margin-bottom:10px;">
-                <h4>🧠 Expert System Pattern</h4>
-                <p><strong style="color:var(--warning);">Knowledge Base</strong> (constraint rules) separated from <strong style="color:var(--success);">Inference Engine</strong> (solvers). Adding a new constraint = adding a rule, not rewriting the solver.</p>
-            </div>
-            <div class="card" style="margin-bottom:10px;">
-                <h4>✅ Key Takeaways</h4>
-                <p>Prolog's pattern matching → natural constraint checking.<br>
-                SWI-Prolog dicts → readable structured data.<br>
-                CLP(FD) → powerful but search space explodes on large instances.</p>
-            </div>
-            <div class="card">
-                <h4>🔮 Future Improvements</h4>
-                <p>Local search (simulated annealing) to reduce penalty.<br>
-                Symmetry breaking in CLP(FD) model.<br>
-                Hybrid: CLP(FD) for small, greedy for large instances.</p>
-            </div>
-        </div>
-    </div>
 
-    <aside class="notes">
-        Here's our architecture. The key design decision was separating the knowledge base — constraint rules — from the solvers. This is a classic expert system pattern. The rules define WHAT must hold, the solver decides HOW to satisfy them.
+                <div class="highlight-box">
+                    <strong>Also available:</strong> Python terminal interface - <code>make run-tui</code> - for
+                    browsing instances, selecting solvers, and inspecting results interactively.
+                </div>
 
-        Prolog was a great fit. Pattern matching makes constraint checking natural. Dicts make the model readable. The main lesson: CLP(FD) is elegant and correct by construction, but greedy is far more practical for large instances. Future work would add local search to optimize penalty.
-    </aside>
-</section>
+                <aside class="notes">
+                    Let me demo. Here's the comp01 instance — 30 courses, 6 rooms, 5 days. I'll run the greedy solver.
+                    [Run the command]. It finishes in about a second. The solution file assigns each course to a room,
+                    day, and period. The CSV shows feasible=true, penalty about 3000.
 
-<!-- ============================================================ -->
-<!-- SLIDE 12: Thank You & Q&A -->
-<!-- ============================================================ -->
-<section class="thankyou" data-background-gradient="radial-gradient(ellipse at 30% 70%, rgba(108,92,231,0.2) 0%, transparent 50%), radial-gradient(ellipse at 70% 30%, rgba(0,206,201,0.15) 0%, transparent 50%)">
-    <h1>Thank You!</h1>
-    <p style="font-size: 0.85em; color: var(--text-muted); margin-bottom: 1.5em;">Questions?</p>
+                    We also built a Python terminal interface for interactively browsing instances, choosing solvers,
+                    and viewing results.
+                </aside>
+            </section>
 
-    <div style="display: flex; gap:20px; justify-content:center; flex-wrap:wrap; margin: 1em 0;">
-        <div class="card" style="text-align:center; min-width:180px;">
-            <div class="icon">📊</div>
-            <h4>Results</h4>
-            <p>20/21 instances solved<br>Greedy + CLP(FD)</p>
-        </div>
-        <div class="card" style="text-align:center; min-width:180px;">
-            <div class="icon">🧠</div>
-            <h4>Approach</h4>
-            <p>Rule-based expert system<br>SWI-Prolog</p>
-        </div>
-        <div class="card" style="text-align:center; min-width:180px;">
-            <div class="icon">📚</div>
-            <h4>Benchmark</h4>
-            <p>ITC2007 Track 2<br>21 real-world instances</p>
-        </div>
-    </div>
+            <!-- ============================================================ -->
+            <!-- SLIDE 11: Architecture & Lessons -->
+            <!-- ============================================================ -->
+            <section data-background-gradient="linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 100%)">
+                <p class="section-label">Architecture</p>
+                <h2>System Design & Lessons Learned</h2>
 
-    <p style="font-size:0.5em; color:var(--text-muted); margin-top: 1.5em;">
-        <a href="https://www.cs.qub.ac.uk/itc2007/" target="_blank" style="color:var(--accent2);">ITC2007: cs.qub.ac.uk/itc2007</a>
-        &nbsp;|&nbsp; SWI-Prolog CLP(FD): swi-prolog.org
-    </p>
-    <p style="font-size:0.45em; color:var(--text-muted); margin-top:0.3em;">Qiang Xue (40300671) · Aamna Fawad (40329487) · Avneet Kaur (40326551)</p>
+                <div class="two-col">
+                    <div>
+                        <div class="diagram-container" style="padding: 16px;">
+                            <p style="font-size:0.55em; font-weight:600; color:var(--accent2); margin:0 0 10px;">Module
+                                Dependency Graph</p>
+                            <div style="display:grid; grid-template-columns:1fr; gap:6px; font-size:0.9em;">
+                                <div class="arch-node entry">📌 main.pl : Entry Point</div>
+                                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;">
+                                    <div class="arch-node input">parser.pl</div>
+                                    <div class="arch-node input">model.pl</div>
+                                    <div class="arch-node input">args.pl</div>
+                                </div>
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+                                    <div class="arch-node rules">hard_constraints.pl</div>
+                                    <div class="arch-node rules">soft_constraints.pl</div>
+                                </div>
+                                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;">
+                                    <div class="arch-node solver">solver.pl</div>
+                                    <div class="arch-node solver">constructive.pl</div>
+                                    <div class="arch-node solver">clpfd_solver.pl</div>
+                                </div>
+                                <div class="arch-node output">writer.pl : Output</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card" style="margin-bottom:10px;">
+                            <h4>🧠 Expert System Pattern</h4>
+                            <p><strong style="color:var(--warning);">Knowledge Base</strong> (constraint rules)
+                                separated from <strong style="color:var(--success);">Inference Engine</strong>
+                                (solvers). Adding a new constraint = adding a rule, not rewriting the solver.</p>
+                        </div>
+                        <div class="card" style="margin-bottom:10px;">
+                            <h4>✅ Key Takeaways</h4>
+                            <p>Prolog's pattern matching → natural constraint checking.<br>
+                                SWI-Prolog dicts → readable structured data.<br>
+                                CLP(FD) → powerful but search space explodes on large instances.</p>
+                        </div>
+                        <div class="card">
+                            <h4>🔮 Future Improvements</h4>
+                            <p>Local search (simulated annealing) to reduce penalty.<br>
+                                Symmetry breaking in CLP(FD) model.<br>
+                                Hybrid: CLP(FD) for small, greedy for large instances.</p>
+                        </div>
+                    </div>
+                </div>
 
-    <aside class="notes">
-        That wraps up our presentation. To summarize — we built a Prolog-based expert system for course timetabling using ITC2007 benchmarks. Two solvers: a fast greedy approach solving 20 of 21 instances, and CLP(FD) demonstrating constraint programming. Thank you — happy to take questions.
-    </aside>
-</section>
+                <aside class="notes">
+                    Here's our architecture. The key design decision was separating the knowledge base — constraint
+                    rules — from the solvers. This is a classic expert system pattern. The rules define WHAT must hold,
+                    the solver decides HOW to satisfy them.
 
-</div><!-- /slides -->
-</div><!-- /reveal -->
+                    Prolog was a great fit. Pattern matching makes constraint checking natural. Dicts make the model
+                    readable. The main lesson: CLP(FD) is elegant and correct by construction, but greedy is far more
+                    practical for large instances. Future work would add local search to optimize penalty.
+                </aside>
+            </section>
 
-<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
-<script>
-    Reveal.initialize({
-        hash: true,
-        slideNumber: 'c/t',
-        showSlideNumber: 'all',
-        transition: 'slide',
-        transitionSpeed: 'default',
-        backgroundTransition: 'fade',
-        center: false,
-        width: 1280,
-        height: 720,
-        margin: 0.03,
-        minScale: 0.5,
-        maxScale: 1.5,
-        plugins: [ RevealHighlight, RevealNotes ]
-    });
-</script>
+            <!-- ============================================================ -->
+            <!-- SLIDE 12: Thank You & Q&A -->
+            <!-- ============================================================ -->
+            <section class="thankyou"
+                data-background-gradient="radial-gradient(ellipse at 30% 70%, rgba(108,92,231,0.2) 0%, transparent 50%), radial-gradient(ellipse at 70% 30%, rgba(0,206,201,0.15) 0%, transparent 50%)">
+                <h1>Thank You!</h1>
+                <p style="font-size: 0.85em; color: var(--text-muted); margin-bottom: 1.5em;">Questions?</p>
+
+                <div style="display: flex; gap:20px; justify-content:center; flex-wrap:wrap; margin: 1em 0;">
+                    <div class="card" style="text-align:center; min-width:180px;">
+                        <div class="icon">📊</div>
+                        <h4>Results</h4>
+                        <p>20/21 instances solved<br>Greedy + CLP(FD)</p>
+                    </div>
+                    <div class="card" style="text-align:center; min-width:180px;">
+                        <div class="icon">🧠</div>
+                        <h4>Approach</h4>
+                        <p>Rule-based expert system<br>SWI-Prolog</p>
+                    </div>
+                    <div class="card" style="text-align:center; min-width:180px;">
+                        <div class="icon">📚</div>
+                        <h4>Benchmark</h4>
+                        <p>ITC2007 Track 2<br>21 real-world instances</p>
+                    </div>
+                </div>
+
+                <p style="font-size:0.5em; color:var(--text-muted); margin-top: 1.5em;">
+                    <a href="https://www.cs.qub.ac.uk/itc2007/" target="_blank" style="color:var(--accent2);">ITC2007:
+                        cs.qub.ac.uk/itc2007</a>
+                    &nbsp;|&nbsp; SWI-Prolog CLP(FD): swi-prolog.org
+                </p>
+                <p style="font-size:0.45em; color:var(--text-muted); margin-top:0.3em;">Qiang Xue (40300671) · Aamna
+                    Fawad (40329487) · Avneet Kaur (40326551)</p>
+
+                <aside class="notes">
+                    That wraps up our presentation. To summarize — we built a Prolog-based expert system for course
+                    timetabling using ITC2007 benchmarks. Two solvers: a fast greedy approach solving 20 of 21
+                    instances, and CLP(FD) demonstrating constraint programming. Thank you — happy to take questions.
+                </aside>
+            </section>
+
+        </div><!-- /slides -->
+    </div><!-- /reveal -->
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            showSlideNumber: 'all',
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            center: false,
+            width: 1280,
+            height: 720,
+            margin: 0.03,
+            minScale: 0.5,
+            maxScale: 1.5,
+            plugins: [RevealHighlight, RevealNotes]
+        });
+    </script>
 </body>
+
 </html>
