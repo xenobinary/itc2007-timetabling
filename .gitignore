@@ -43,3 +43,7 @@ results/**/*.json
 openspec/
 results/
 AGENTS.md
+node_modules/
+export.js
+package.json
+package-lock.json

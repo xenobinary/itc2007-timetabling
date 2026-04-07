@@ -109,10 +109,7 @@
 
         .title-slide h1 {
             font-size: 2.0em;
-            background: linear-gradient(135deg, var(--accent), var(--accent2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent2);
             margin-bottom: 0.1em;
         }
 
@@ -610,10 +607,7 @@
 
         .thankyou h1 {
             font-size: 2.8em;
-            background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent2);
         }
 
         .reveal .slide-number {
@@ -1453,6 +1447,8 @@ cat results/demo.csv
             margin: 0.03,
             minScale: 0.5,
             maxScale: 1.5,
+            pdfSeparateFragments: false,
+            pdfMaxPagesPerSlide: 1,
             plugins: [RevealHighlight, RevealNotes]
         });
     </script>
