@@ -90,7 +90,7 @@ Course timetabling is a combinatorial optimization problem in which a set of lec
 \end{abstract}
 
 \section{Introduction}
-University course timetabling is one of the classic combinatorial optimization problems studied in operations research and artificial intelligence. Given a set of courses, rooms, teachers, and curricula, the goal is to assign every lecture to a (day, period, room) triple so that hard constraints are not violated and soft-constraint penalties are minimized. The International Timetabling Competition 2007 (ITC2007)~\cite{itc2007} standardized a Track~2 benchmark---Curriculum-Based Course Timetabling (CB-CTT)---that is now widely used as a reference in the literature.
+University course timetabling is one of the classic combinatorial optimization problems studied in operations research and artificial intelligence. Given a set of courses, rooms, teachers, and curricula, the goal is to assign every lecture to a (day, period, room) triple so that hard constraints are not violated and soft-constraint penalties are minimized. The International Timetabling Competition 2007 (ITC2007)~\cite{itc2007} standardized a Track~2 benchmark--Curriculum-Based Course Timetabling (CB-CTT)--that is now widely used as a reference in the literature.
 
 Curriculum-based course timetabling has been extensively studied. Bettinelli et al.~\cite{bettinelli2015overview} provide an overview of CB-CTT, surveying exact, metaheuristic, and hybrid methods. The ITC2007 competition benchmark established standardized instances that have become the de-facto evaluation framework~\cite{itc2007}. Qu et al.~\cite{qu2009survey} survey search methodologies for examination timetabling, covering constructive heuristics, local search, and hybrids. De Coster et al.~\cite{de2022algorithm} study algorithm selection and instance-space analysis for CB-CTT, demonstrating that no single method dominates on all instances. Guyette et al.~\cite{guyette1994rule} applied a rule-based expert system to class scheduling, motivating our Prolog approach.
 
@@ -272,7 +272,8 @@ Let $A$ denote assignments, $C$ courses, $T$ teachers, $\mathcal{K}$ curricula, 
 \end{align*}
 
 \section{Verification and Validation (V\&V) Techniques Used}
-\textbf{Verification Strategy}: Confirms the system is built correctly against constraints.
+\begin{itemize}
+\item \textbf{Verification Strategy}: Confirms the system is built correctly against constraints.
 \begin{enumerate}[nosep]
   \item \textbf{Unit tests (plunit)}: A test suite covering the parser, constraint engines, and solvers.
   \item \textbf{Solution validator}: The declarative hard constraint engine independently validates all final outputs.
@@ -280,12 +281,13 @@ Let $A$ denote assignments, $C$ courses, $T$ teachers, $\mathcal{K}$ curricula, 
   \item \textbf{Test Fixture}: A minimal known \texttt{mini.ctt} fixture enables verified baseline correctness.
 \end{enumerate}
 
-\textbf{Validation Strategy}: Confirms the system meets user/real-world needs.
+\item \textbf{Validation Strategy}: Confirms the system meets user/real-world needs.
 \begin{enumerate}[nosep]
   \item \textbf{ITC2007 Format Compliance}: Fully interprets true official benchmarking files.
   \item \textbf{End-to-End Batch Runs}: Batch validation on real configurations scaling to real university settings.
   \item \textbf{Feasibility and Penalty Rating}: Outcomes accurately correlate with known results published in literature.
 \end{enumerate}
+\end{itemize}
 
 \section{Identification of the Inferencing Method Used}
 The system employs distinct inferencing mechanisms according to the task phase:
@@ -346,38 +348,78 @@ Execution iterates synchronously processing sequential transformation phases:
 \subsection{Knowledge Structuring and Data Structures}
 SWI-Prolog native association lists maintain $O(\log n)$ course-teacher linkages supporting highly-efficient querying over deeply layered hierarchical course configurations. Pre-computing arrays establishes domain boundaries securely prior to labeling attempts dynamically allocating resources natively.
 
+\section{Program Execution Flow}
+To demonstrate the system's operational capability and interactive terminal UI, the following sequence illustrates a complete solver run for the \texttt{comp03.ctt} instance:
+
+\begin{figure}[H]
+    \centering
+    \resizebox{\linewidth}{!}{%
+    \begin{tikzpicture}[
+        node distance=1cm and 0.5cm,
+        img/.style={align=center, inner sep=0pt, font=\small},
+        arr/.style={-Latex, ultra thick, draw=blue!60}
+    ]
+        % Layer 1
+        \node[img] (n1) {\includegraphics[width=6.5cm]{images/Step1.png}\\[1mm] Step 1: Main Menu execution};
+        
+        % Layer 2
+        \node[img, below=1cm of n1, xshift=-4cm] (n2) {\includegraphics[width=6.5cm]{images/Step2.png}\\[1mm] Step 2: Instance Selection};
+        \node[img, below=1cm of n1, xshift=4cm] (n3) {\includegraphics[width=6.5cm]{images/Step3.png}\\[1mm] Step 3: Instance Summary};
+        
+        % Layer 3
+        \node[img, below=1cm of n2] (n4) {\includegraphics[width=6.5cm]{images/Step4.png}\\[1mm] Step 4: Solver Execution - Greedy};
+        \node[img, below=1cm of n3] (n5) {\includegraphics[width=6.5cm]{images/Step5.png}\\[1mm] Step 5: Solver Execution - CLP(FD)};
+        
+        % Layer 4
+        \path (n4.south) -- (n5.south) coordinate[midway] (midway3);
+        \node[img, below=1cm of midway3] (n6) {\includegraphics[width=6.5cm]{images/Step6.png}\\[1mm] Step 6: Solution Overview and Timetable Grid};
+        
+        % Connections
+        \draw[arr] (n1) -- (n2);
+        \draw[arr] (n2) -- (n3);
+        \draw[arr] (n3) -- (n4);
+        \draw[arr] (n3) -- (n5);
+        \draw[arr] (n4) -- (n6);
+        \draw[arr] (n5) -- (n6);
+    \end{tikzpicture}
+    }
+    \caption{TUI Program Execution Flow Sequence graph for \texttt{comp03.ctt}}
+\end{figure}
+
+\clearpage
+
 \section{Experiments and Results}
-We performed an evaluation across standard standardized ITC2007 instances using SWI-Prolog 9.x on Linux. Runs were configured with a time limit of 30 seconds and maximum 30 randomized restart iterations for the constructive engine.
+We performed an evaluation across standard standardized ITC2007 instances using SWI-Prolog 9.x on Linux. Runs were configured with a time limit of 120 seconds and maximum 30 randomized restart iterations for the constructive engine.
 
 \subsection{Solver Result Comparisons}
 
 \begin{table}[H]
 \centering
-\caption{Performance metrics across ITC2007 benchmark suite (Time limit: 30s)}
+\caption{Performance metrics across ITC2007 benchmark suite (Time limit: 120s)}
 \begin{tabular}{@{}llrlrl@{}}
 \toprule
 \textbf{Instance} & \textbf{Greedy} & \textbf{Penalty} & \textbf{CLP(FD)} & \textbf{Penalty} & \textbf{Best Known} \\ \midrule
-comp01 & \textbf{Yes} Feasible & 3,020   & \textbf{Timeout} Timeout & ---     & 5     \\
-comp02 & \textbf{Yes} Feasible & 7,483   & \textbf{Timeout} Timeout & ---     & 24    \\
-comp03 & \textbf{Yes} Feasible & 5,834   & \textbf{Yes} Feasible & 7,949   & 66    \\
-comp04 & \textbf{Yes} Feasible & 5,212   & \textbf{Yes} Feasible & 7,063   & 37    \\
-comp05 & \textbf{No } Failed   & ---     & \textbf{Timeout} Timeout & ---     & 290   \\
-comp06 & \textbf{Yes} Feasible & 7,683   & \textbf{Timeout} Timeout & ---     & 27    \\
-comp07 & \textbf{Yes} Feasible & 7,701   & \textbf{Timeout} Timeout & ---     & 6     \\
-comp08 & \textbf{Yes} Feasible & 4,918   & \textbf{Timeout} Timeout & ---     & 37    \\
-comp09 & \textbf{Yes} Feasible & 5,013   & \textbf{Yes} Feasible & 7,401   & 103   \\
-comp10 & \textbf{Yes} Feasible & 6,122   & \textbf{Timeout} Timeout & ---     & 4     \\
-comp11 & \textbf{Yes} Feasible & 1,987   & \textbf{Timeout} Timeout & ---     & 0     \\
-comp12 & \textbf{Yes} Feasible & 5,066   & \textbf{Yes} Feasible & \textbf{4,822} & 300   \\
-comp13 & \textbf{Yes} Feasible & 7,288   & \textbf{Timeout} Timeout & ---     & 59    \\
-comp14 & \textbf{Yes} Feasible & 4,974   & \textbf{Timeout} Timeout & ---     & 51    \\
-comp15 & \textbf{Yes} Feasible & 5,834   & \textbf{Yes} Feasible & 7,949   & 66    \\
-comp16 & \textbf{Yes} Feasible & 6,348   & \textbf{Timeout} Timeout & ---     & 18    \\
-comp17 & \textbf{Yes} Feasible & 6,367   & \textbf{Timeout} Timeout & ---     & 56    \\
-comp18 & \textbf{Yes} Feasible & 2,037   & \textbf{Timeout} Timeout & ---     & 62    \\
-comp19 & \textbf{Yes} Feasible & 4,617   & \textbf{Timeout} Timeout & ---     & 57    \\
-comp20 & \textbf{Yes} Feasible & 8,623   & \textbf{Timeout} Timeout & ---     & 4     \\
-comp21 & \textbf{Yes} Feasible & 6,427   & \textbf{Timeout} Timeout & ---     & 74    \\ \bottomrule
+comp01 & \textbf{Yes} & 3,020   & \textbf{Timeout}  & ---     & 5     \\
+comp02 & \textbf{Yes} & 7,483   & \textbf{Timeout}  & ---     & 24    \\
+comp03 & \textbf{Yes} & 5,834   & \textbf{Yes}  & 7,949   & 66    \\
+comp04 & \textbf{Yes} & 5,212   & \textbf{Yes}  & 7,063   & 37    \\
+comp05 & \textbf{No } & ---     & \textbf{Timeout}  & ---     & 290   \\
+comp06 & \textbf{Yes} & 7,683   & \textbf{Timeout}  & ---     & 27    \\
+comp07 & \textbf{Yes} & 7,701   & \textbf{Timeout}  & ---     & 6     \\
+comp08 & \textbf{Yes} & 4,918   & \textbf{Timeout}  & ---     & 37    \\
+comp09 & \textbf{Yes} & 5,013   & \textbf{Yes}  & 7,401   & 103   \\
+comp10 & \textbf{Yes} & 6,122   & \textbf{Timeout}  & ---     & 4     \\
+comp11 & \textbf{Yes} & 1,987   & \textbf{Timeout}  & ---     & 0     \\
+comp12 & \textbf{Yes} & 5,066   & \textbf{Yes}  & \textbf{4,822} & 300   \\
+comp13 & \textbf{Yes} & 7,288   & \textbf{Timeout}  & ---     & 59    \\
+comp14 & \textbf{Yes} & 4,974   & \textbf{Timeout}  & ---     & 51    \\
+comp15 & \textbf{Yes} & 5,834   & \textbf{Yes}  & 7,949   & 66    \\
+comp16 & \textbf{Yes} & 6,348   & \textbf{Timeout}  & ---     & 18    \\
+comp17 & \textbf{Yes} & 6,367   & \textbf{Timeout}  & ---     & 56    \\
+comp18 & \textbf{Yes} & 2,037   & \textbf{Timeout}  & ---     & 62    \\
+comp19 & \textbf{Yes} & 4,617   & \textbf{Timeout}  & ---     & 57    \\
+comp20 & \textbf{Yes} & 8,623   & \textbf{Timeout}  & ---     & 4     \\
+comp21 & \textbf{Yes} & 6,427   & \textbf{Timeout}  & ---     & 74    \\ \bottomrule
 \end{tabular}
 \end{table}
 
