@@ -151,9 +151,9 @@ The CLP(FD) solver takes a constraint-propagation approach:
 \subsection{Hard Constraints AND/OR Graph}
 % ----- Forest node styles -----
 \forestset{
-  ornd/.style  = {ellipse, draw, thick, align=center, inner sep=3pt},
-  andnd/.style = {rectangle, draw, thick, double, align=center,
-                  inner sep=3pt, rounded corners=2pt},
+  and arc/.style={
+    tikz+={\draw[thick] ($(.parent anchor)!0.3!(!1.child anchor)$) to[bend right=15] ($(.parent anchor)!0.3!(!l.child anchor)$);}
+  },
   lfnd/.style  = {rectangle, draw, fill=gray!15, align=center,
                   inner sep=3pt, font=\small\ttfamily},
 }
@@ -164,33 +164,26 @@ The CLP(FD) solver takes a constraint-propagation approach:
 \begin{forest}
   for tree={
     edge={-Latex},
-    l sep=14pt, s sep=6pt,
+    l sep=20pt, s sep=8pt,
     anchor=north,
   }
-  [{\textbf{feasible(I,\,S)}\\[2pt]\scriptsize(AND: all checks pass)},
-   andnd
-    [{\(\lnot\)H1\\[-1pt]\scriptsize no missing\\[-2pt]\scriptsize lectures},
-     ornd
+  [{\textbf{feasible(I,\,S)}\\[2pt]\scriptsize(AND: all checks pass)}, and arc, align=center
+    [{\(\lnot\)H1\\[-1pt]\scriptsize no missing\\[-2pt]\scriptsize lectures}, align=center
       [{$\forall c:\;$\\[-1pt]\scriptsize lectures(c)\\[-2pt]\scriptsize covered}, lfnd]
     ]
-    [{\(\lnot\)H2\\[-1pt]\scriptsize no room\\[-2pt]\scriptsize conflict},
-     ornd
+    [{\(\lnot\)H2\\[-1pt]\scriptsize no room\\[-2pt]\scriptsize conflict}, align=center
       [{$\forall (d,p,r):$\\[-1pt]\scriptsize $\leq1$ lecture\\[-2pt]\scriptsize per slot/room}, lfnd]
     ]
-    [{\(\lnot\)H3\\[-1pt]\scriptsize no course\\[-2pt]\scriptsize self-conflict},
-     ornd
+    [{\(\lnot\)H3\\[-1pt]\scriptsize no course\\[-2pt]\scriptsize self-conflict}, align=center
       [{$\forall c,i\!\neq\!j:$\\[-1pt]\scriptsize diff slot\\[-2pt]\scriptsize per course}, lfnd]
     ]
-    [{\(\lnot\)H4\\[-1pt]\scriptsize no teacher\\[-2pt]\scriptsize conflict},
-     ornd
+    [{\(\lnot\)H4\\[-1pt]\scriptsize no teacher\\[-2pt]\scriptsize conflict}, align=center
       [{$\forall t,(d,p):$\\[-1pt]\scriptsize $\leq1$ course\\[-2pt]\scriptsize per teacher}, lfnd]
     ]
-    [{\(\lnot\)H5\\[-1pt]\scriptsize no curriculum\\[-2pt]\scriptsize conflict},
-     ornd
+    [{\(\lnot\)H5\\[-1pt]\scriptsize no curriculum\\[-2pt]\scriptsize conflict}, align=center
       [{$\forall q,(d,p):$\\[-1pt]\scriptsize $\leq1$ course\\[-2pt]\scriptsize per curr.}, lfnd]
     ]
-    [{\(\lnot\)H6\\[-1pt]\scriptsize no unavail-\\[-2pt]\scriptsize ability},
-     ornd
+    [{\(\lnot\)H6\\[-1pt]\scriptsize no unavail-\\[-2pt]\scriptsize ability}, align=center
       [{$\forall c,(d,p):$\\[-1pt]\scriptsize not in\\[-2pt]\scriptsize excluded slot}, lfnd]
     ]
   ]
@@ -198,12 +191,14 @@ The CLP(FD) solver takes a constraint-propagation approach:
 }% end resizebox
 
 \smallskip
-\begin{tikzpicture}[baseline=(a.base)]
-  \node[ellipse, draw, thick, inner sep=2pt, font=\small] (a) {OR node};
-  \node[rectangle, draw, thick, double, rounded corners=2pt,
-        inner sep=2pt, font=\small, right=10pt of a] (b) {AND node};
+\begin{tikzpicture}[baseline=(b.base)]
+  \node[align=center, inner sep=2pt, font=\small] (b) {AND branches};
+  \draw[-Latex] (b.south) -- ++(-0.4,-0.5) coordinate (bl);
+  \draw[-Latex] (b.south) -- ++(0.4,-0.5) coordinate (br);
+  \draw[thick] ($(b.south)!0.3!(bl)$) to[bend right=15] ($(b.south)!0.3!(br)$);
+  
   \node[rectangle, draw, fill=gray!15, inner sep=2pt, font=\small\ttfamily,
-        right=10pt of b] (c) {leaf};
+        right=20pt of b] (c) {leaf};
   \node[font=\small, right=4pt of c] {\emph{(condition)}};
 \end{tikzpicture}
 \caption{AND/OR rule graph for \texttt{feasible/2}.}
@@ -216,24 +211,19 @@ The CLP(FD) solver takes a constraint-propagation approach:
 \begin{forest}
   for tree={
     edge={-Latex},
-    l sep=14pt, s sep=8pt,
+    l sep=20pt, s sep=8pt,
     anchor=north,
   }
   [{\textbf{Produce Feasible}\\[-1pt]\textbf{Schedule}\\[2pt]
-    \scriptsize(OR: either solver suffices)},
-   ornd
+    \scriptsize(OR: either solver suffices)}, align=center
     [{\textbf{Constructive}\\[-1pt]\textbf{Solver}\\[2pt]
-      \scriptsize(AND: all phases)},
-     andnd
+      \scriptsize(AND: all phases)}, and arc, align=center
       [{\scriptsize Parse\\[-1pt]\scriptsize Instance}, lfnd]
       [{\scriptsize Order Courses\\[-1pt]\scriptsize (MCF heuristic)}, lfnd]
-      [{\textbf{Place All}\\[-1pt]\textbf{Lectures}\\[2pt]\scriptsize(AND)},
-       andnd
+      [{\textbf{Place All}\\[-1pt]\textbf{Lectures}\\[2pt]\scriptsize(AND)}, and arc, align=center
         [{\textbf{Place}\\[-1pt]\textbf{Lecture\,\textit{i}}\\[2pt]
-          \scriptsize(OR: any valid\\[-2pt]\scriptsize slot+room)},
-         ornd
-          [{\textbf{Valid}\\[-1pt]\textbf{Placement}\\[2pt]\scriptsize(AND: all checks)},
-           andnd
+          \scriptsize(OR: any valid\\[-2pt]\scriptsize slot+room)}, align=center
+          [{\textbf{Valid}\\[-1pt]\textbf{Placement}\\[2pt]\scriptsize(AND: all checks)}, and arc, align=center
             [{\scriptsize$\lnot$room\\[-2pt]\scriptsize conflict}, lfnd]
             [{\scriptsize$\lnot$teacher\\[-2pt]\scriptsize conflict}, lfnd]
             [{\scriptsize$\lnot$curriculum\\[-2pt]\scriptsize conflict}, lfnd]
@@ -244,11 +234,9 @@ The CLP(FD) solver takes a constraint-propagation approach:
       ]
     ]
     [{\textbf{CLP(FD)}\\[-1pt]\textbf{Solver}\\[2pt]
-      \scriptsize(AND: all phases)},
-     andnd
+      \scriptsize(AND: all phases)}, and arc, align=center
       [{\scriptsize Parse\\[-1pt]\scriptsize Instance}, lfnd]
-      [{\textbf{Post FD}\\[-1pt]\textbf{Constraints}\\[2pt]\scriptsize(AND)},
-       andnd
+      [{\textbf{Post FD}\\[-1pt]\textbf{Constraints}\\[2pt]\scriptsize(AND)}, and arc, align=center
         [{\scriptsize Day/Period\\[-2pt]\scriptsize domains}, lfnd]
         [{\scriptsize Room\\[-2pt]\scriptsize domains}, lfnd]
         [{\scriptsize H2 room\\[-2pt]\scriptsize all\_diff}, lfnd]
